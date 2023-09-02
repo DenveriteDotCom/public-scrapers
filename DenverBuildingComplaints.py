@@ -94,7 +94,7 @@ def handleListing():
 		link = 'https://aca-prod.accela.com' + i.parent.parent.parent.findNext('td').find('a')['href']
 		address = i.parent.parent.parent.findNext('td').findNext('td').findNext('td').findNext('td').text.replace('\n','').split('\r')
 		address = address[0].upper().split(', DENVER')[0]
-		type = i.parent.parent.parent.findNext('td').findNext('td').findNext('td').findNext('td').findNext('td').findNext('td').text.replace('\n','').split('\r')
+		type = i.parent.parent.parent.findNext('td').findNext('td').findNext('td').text.replace('\n','')
 		print(address)
 		print(link)
 			# Access details in the second page
@@ -105,7 +105,7 @@ def handleListing():
 		desc = soup2.find(text='Project Description:').parent.findNext('span').text.replace('\n','')
 		print(emer, desc)
 		if emer == 'No':
-			postThis2 = {'text':"Howdy! There's a new building complaint about " + str(address) + "\nIt's categorized as '" + str(type) + "' and described as '" + str(desc) + "'."}
+			postThis2 = {'text':"Howdy! There's a new building complaint about " + address + "\nIt's categorized as '" + type + "' and described as '" + desc + "'."}
 		#else:
 		#	postThis2 = {'text':"Howdy! There's a new building complaint about " + address + "\nIt's categorized as '" + type + "' and described as '" + desc + "'.\nHeads up, it was listed as an emergency!"}
 		print(postThis2)
