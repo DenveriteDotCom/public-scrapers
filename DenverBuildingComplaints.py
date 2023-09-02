@@ -96,10 +96,12 @@ def handleListing():
 			address = address[0].upper().split(', DENVER')[0]
 			type = i.parent.parent.parent.findNext('td').findNext('td').findNext('td').findNext('td').findNext('td').findNext('td').text.replace('\n','').split('\r')
 			print(address)
+			print(link)
 			# Access details in the second page
 			page = requests.get(link).text
 			soup2 = BeautifulSoup(page, 'html.parser')
 			time.sleep(5)
+			print(soup2.find(text='Flag as Emergency?: ').parent.parent.findNext('div').text.replace('\n',''))
 			emer = soup2.find(text='Flag as Emergency?: ').parent.parent.findNext('div').text.replace('\n','')
 			desc = soup2.find(text='Project Description:').parent.findNext('span').text.replace('\n','')
 			print(desc)
