@@ -103,6 +103,7 @@ def handleListing():
 			time.sleep(5)
 			emer = soup2.find(text='Flag as Emergency?: ').parent.parent.findNext('div').text.replace('\n','')
 			desc = soup2.find(text='Project Description:').parent.findNext('span').text.replace('\n','')
+			print(emer, desc)
 			if emer == 'Yes':
 				postThis2 = {'text':"Howdy! There's a new building complaint about " + address + "\nIt's categorized as '" + type + "' and described as '" + desc + "'.\nHeads up <!here>, it was listed as an emergency!"}
 			else:
