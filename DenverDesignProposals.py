@@ -17,6 +17,7 @@ import os
 
 
 SLACKURL = os.environ['SLACKURL']
+CITYLOGIN = os.environ['CITYLOGIN']
 
 # What day is today? This needs a subtraction if it's posted after 18:00 MST.
 date = datetime.now()
@@ -58,6 +59,15 @@ browser = webdriver.Chrome(options=chrome_options)
 url = 'https://www.denvergov.org/AccelaCitizenAccess/Cap/CapHome.aspx?module=Development&TabName=Home'
 browser.get(url)
 time.sleep(timer)
+
+
+# Login to the portal
+
+browser.switch_to.frame(browser.find_element('xpath', '//*[@id="LoginFrame"]'))
+browser.find_element('xpath', '//*[@id="username"]').send_keys('kevinjbeaty')
+browser.find_element('xpath', '//*[@id="passwordRequired"]').send_keys(CITYLOGIN)
+browser.find_element('xpath', '/html/body/main/app-root/div/aca-login-panel/form/div[5]/accela-button-primary/div/button/span').click()
+browser.find_element('xpath','//*[@id="span_tab_1"]/table/tbody/tr/td[2]/div/a').click()
 
 
 # Select design proposals and search for all entries
