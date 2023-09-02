@@ -139,7 +139,7 @@ def handleListing():
 				if int(units) > 50:
 					postThis2 = {'text':"Howdy! There's a new " + units + "-unit buiding proposal at " + address + "\nHere's the <" + link + "|documentation>!\nATTN: <@U02G1BD617E>"} 
 					response2 = requests.post(SLACKURL, data=json.dumps(postThis2), headers={'Content-Type': 'application/json'})
-				else if soup2..find(text="Is this an emergency housing project per the mayor’s homelessness and housing insecurity order?: ").parent.findNext('span').text.replace('\n','') == 'Yes'
+				else if soup2..find(text="Is this an emergency housing project per the mayor’s homelessness and housing insecurity order?: ").parent.findNext('span').text.replace('\n','') == 'Yes':
 					postThis2 = {'text':"Howdy! There's a new buiding proposal marked as part of Johnston's emergency plan, at " + address + "\nHere's the <" + link + "|documentation>!\nATTN: <@U02G1BD617E>"} 
 					response2 = requests.post(SLACKURL, data=json.dumps(postThis2), headers={'Content-Type': 'application/json'})
 					#except:
