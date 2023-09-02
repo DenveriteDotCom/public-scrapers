@@ -94,17 +94,17 @@ def handleListing():
 			link = 'https://www.denvergov.org' + i.parent.parent.parent.findNext('td').find('a')['href']
 			address = i.parent.parent.parent.findNext('td').findNext('td').findNext('td').findNext('td').text.replace('\n','').split('\r')
 			address = address[0].upper().split(', DENVER')[0]
-      type = i.parent.parent.parent.findNext('td').findNext('td').findNext('td').findNext('td').findNext('td').findNext('td').text.replace('\n','').split('\r')
+      			type = i.parent.parent.parent.findNext('td').findNext('td').findNext('td').findNext('td').findNext('td').findNext('td').text.replace('\n','').split('\r')
       # Access details in the second page
 			page = requests.get(link).text
 			soup2 = BeautifulSoup(page, 'html.parser')
 			time.sleep(5)
-      emer = soup2.find(text='Flag as Emergency?: ').parent.parent.findNext('div').text.replace('\n','')
-      desc = soup.find(text='Project Description:').parent.findNext('span').text.replace('\n','')
+      			emer = soup2.find(text='Flag as Emergency?: ').parent.parent.findNext('div').text.replace('\n','')
+      			desc = soup.find(text='Project Description:').parent.findNext('span').text.replace('\n','')
 			if emer == 'Yes':
-        postThis2 = {'text':"Howdy! There's a new building complaint about <" + link + "|" + address + ">\nIt's categorized as '" + type + "' and described as '" + desc + "'.\nHeads up <!here>, it was listed as an emergency!"}
-      else:
-        postThis2 = {'text':"Howdy! There's a new building complaint about <" + link + "|" + address + ">\nIt's categorized as '" + type + "' and described as '" + desc + "'."}
+        			postThis2 = {'text':"Howdy! There's a new building complaint about <" + link + "|" + address + ">\nIt's categorized as '" + type + "' and described as '" + desc + "'.\nHeads up <!here>, it was listed as an emergency!"}
+      			else:
+        			postThis2 = {'text':"Howdy! There's a new building complaint about <" + link + "|" + address + ">\nIt's categorized as '" + type + "' and described as '" + desc + "'."}
 			response2 = requests.post(SLACKURL, data=json.dumps(postThis2), headers={'Content-Type': 'application/json'})
 		except:
 			pass
