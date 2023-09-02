@@ -91,7 +91,7 @@ def handleListing():
 		count = count + 1
 		try:
 			# Access list items from today
-			link = 'https://www.denvergov.org' + i.parent.parent.parent.findNext('td').find('a')['href']
+			link = 'https://aca-prod.accela.com' + i.parent.parent.parent.findNext('td').find('a')['href']
 			address = i.parent.parent.parent.findNext('td').findNext('td').findNext('td').findNext('td').text.replace('\n','').split('\r')
 			address = address[0].upper().split(', DENVER')[0]
 			type = i.parent.parent.parent.findNext('td').findNext('td').findNext('td').findNext('td').findNext('td').findNext('td').text.replace('\n','').split('\r')
