@@ -1,6 +1,7 @@
 name: Scrape Design Proposals
 env:
   SLACKURL: ${{ secrets.slackURL }}
+  CITYLOGIN: ${{ secrets.cityLogin }}
 on:
   workflow_dispatch:
 jobs:
