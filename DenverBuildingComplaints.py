@@ -89,29 +89,29 @@ def handleListing():
 	global count
 	for i in todaysLinks:
 		count = count + 1
-		try:
+		#try:
 			# Access list items from today
-			link = 'https://aca-prod.accela.com' + i.parent.parent.parent.findNext('td').find('a')['href']
-			address = i.parent.parent.parent.findNext('td').findNext('td').findNext('td').findNext('td').text.replace('\n','').split('\r')
-			address = address[0].upper().split(', DENVER')[0]
-			type = i.parent.parent.parent.findNext('td').findNext('td').findNext('td').findNext('td').findNext('td').findNext('td').text.replace('\n','').split('\r')
-			print(address)
-			print(link)
+		link = 'https://aca-prod.accela.com' + i.parent.parent.parent.findNext('td').find('a')['href']
+		address = i.parent.parent.parent.findNext('td').findNext('td').findNext('td').findNext('td').text.replace('\n','').split('\r')
+		address = address[0].upper().split(', DENVER')[0]
+		type = i.parent.parent.parent.findNext('td').findNext('td').findNext('td').findNext('td').findNext('td').findNext('td').text.replace('\n','').split('\r')
+		print(address)
+		print(link)
 			# Access details in the second page
-			page = requests.get(link).text
-			soup2 = BeautifulSoup(page, 'html.parser')
-			time.sleep(5)
-			emer = soup2.find(text='Flag as Emergency?: ').parent.parent.findNext('div').text.replace('\n','')
-			desc = soup2.find(text='Project Description:').parent.findNext('span').text.replace('\n','')
-			print(emer, desc)
-			if emer == 'No':
-				postThis2 = {'text':"Howdy! There's a new building complaint about " + address + "\nIt's categorized as '" + type + "' and described as '" + desc + "'."}
-			else:
-				postThis2 = {'text':"Howdy! There's a new building complaint about " + address + "\nIt's categorized as '" + type + "' and described as '" + desc + "'.\nHeads up, it was listed as an emergency!"}
-			print(postThis2)
-			response2 = requests.post(SLACKURL, data=json.dumps(postThis2), headers={'Content-Type': 'application/json'})
-		except:
-			pass
+		page = requests.get(link).text
+		soup2 = BeautifulSoup(page, 'html.parser')
+		time.sleep(5)
+		emer = soup2.find(text='Flag as Emergency?: ').parent.parent.findNext('div').text.replace('\n','')
+		desc = soup2.find(text='Project Description:').parent.findNext('span').text.replace('\n','')
+		print(emer, desc)
+		if emer == 'No':
+			postThis2 = {'text':"Howdy! There's a new building complaint about " + address + "\nIt's categorized as '" + type + "' and described as '" + desc + "'."}
+		else:
+			postThis2 = {'text':"Howdy! There's a new building complaint about " + address + "\nIt's categorized as '" + type + "' and described as '" + desc + "'.\nHeads up, it was listed as an emergency!"}
+		print(postThis2)
+		response2 = requests.post(SLACKURL, data=json.dumps(postThis2), headers={'Content-Type': 'application/json'})
+		#except:
+			#pass
 	if count == 10:
 		time.sleep(5)
 		count = 0
