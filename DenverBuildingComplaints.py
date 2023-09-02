@@ -105,9 +105,9 @@ def handleListing():
 		desc = soup2.find(text='Project Description:').parent.findNext('span').text.replace('\n','')
 		print(emer, desc)
 		if emer == 'No':
-			postThis2 = {'text':"Howdy! There's a new building complaint about " + address + "\nIt's categorized as '" + type + "' and described as '" + desc + "'."}
-		else:
-			postThis2 = {'text':"Howdy! There's a new building complaint about " + address + "\nIt's categorized as '" + type + "' and described as '" + desc + "'.\nHeads up, it was listed as an emergency!"}
+			postThis2 = {'text':"Howdy! There's a new building complaint about " + str(address) + "\nIt's categorized as '" + str(type) + "' and described as '" + str(desc) + "'."}
+		#else:
+		#	postThis2 = {'text':"Howdy! There's a new building complaint about " + address + "\nIt's categorized as '" + type + "' and described as '" + desc + "'.\nHeads up, it was listed as an emergency!"}
 		print(postThis2)
 		response2 = requests.post(SLACKURL, data=json.dumps(postThis2), headers={'Content-Type': 'application/json'})
 		#except:
