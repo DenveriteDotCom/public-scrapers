@@ -1,4 +1,4 @@
-name: Scrape Design Proposals
+name: Scrape Building Complaints
 env:
   SLACKURL: ${{ secrets.slackURL }}
   CITYLOGIN: ${{ secrets.cityLogin }}
