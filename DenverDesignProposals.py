@@ -96,35 +96,8 @@ def handleListing():
 	global todaysLinks
 	global date
 	global count
-	for i in todaysLinks:
-		count = count + 1
-		try:
-			link = 'https://aca-prod.accela.com' + i.parent.parent.parent.findNext('td').find('a')['href']
-			address = i.parent.parent.parent.findNext('td').findNext('td').findNext('td').findNext('td').text.replace('\n','').split('\r')
-			address = address[0].upper().split(', DENVER')[0]
-			print(address)
-			# If it's in our watchlist, we'll definitely ping Slack.
 
-			if address in watchList:
-				postThis = {'text':"Howdy! There's a new buiding proposal at " + address + ", which is on your watchlist!\nHere's the <" + link + "|documentation>!\nATTN: <@U02G1BD617E>"} 
-				response = requests.post(SLACKURL, data=json.dumps(postThis), headers={'Content-Type': 'application/json'})
-
-			# Otherwise, we'll see if it's a notable proposal. We're just looking at the number of units to start, but we could always add more.
-
-			else:
-				page = requests.get(link).text
-				soup2 = BeautifulSoup(page, 'html.parser')
-				time.sleep(5)
-				try:
-					units = soup2.find(text='Number of Proposed Dwelling Units: ').parent.parent.findNext('div').text.replace('\n','')
-					print(units)
-					if int(units) > 50:
-						postThis2 = {'text':"Howdy! There's a new " + units + "-unit buiding proposal at " + address + "\nHere's the <" + link + "|documentation>!\nATTN: <@U02G1BD617E>"} 
-						response2 = requests.post(SLACKURL, data=json.dumps(postThis2), headers={'Content-Type': 'application/json'})
-				except:
-					pass
-		except:
-			pass
+	# Add more if today's links are longer than one page.
 	if count == 10:
 		time.sleep(5)
 		count = 0
@@ -138,6 +111,42 @@ def handleListing():
 				handleListing()
 			except:
 				pass
+	else:
+		for i in todaysLinks:
+			count = count + 1
+			try:
+				link = 'https://aca-prod.accela.com' + i.parent.parent.parent.findNext('td').find('a')['href']
+				address = i.parent.parent.parent.findNext('td').findNext('td').findNext('td').findNext('td').text.replace('\n','').split('\r')
+				address = address[0].upper().split(', DENVER')[0]
+				print(address)
+				
+				# If it's in our watchlist, we'll definitely ping Slack.
+
+				if address in watchList:
+					postThis = {'text':"Howdy! There's a new buiding proposal at " + address + ", which is on your watchlist!\nHere's the <" + link + "|documentation>!\nATTN: <@U02G1BD617E>"} 
+					response = requests.post(SLACKURL, data=json.dumps(postThis), headers={'Content-Type': 'application/json'})
+
+				# Otherwise, we'll see if it's a notable proposal. We're just looking at the number of units to start, but we could always add more.
+
+			
+				else:
+					browser.get(link)
+					soup2 = BeautifulSoup(browser.page_source, 'html.parser')
+					time.sleep(5)
+					try:
+						units = soup2.find(text='Number of Proposed Dwelling Units: ').parent.parent.findNext('div').text.replace('\n','')
+						print(units)
+						if int(units) > 50:
+							postThis2 = {'text':"Howdy! There's a new " + units + "-unit buiding proposal at " + address + "\nHere's the <" + link + "|documentation>!\nATTN: <@U02G1BD617E>"} 
+							response2 = requests.post(SLACKURL, data=json.dumps(postThis2), headers={'Content-Type': 'application/json'})
+						else if soup2..find(text="Is this an emergency housing project per the mayor’s homelessness and housing insecurity order?: ").parent.findNext('span').text.replace('\n','') == 'Yes'
+							postThis2 = {'text':"Howdy! There's a new buiding proposal marked as part of Johnston's emergency plan, at " + address + "\nHere's the <" + link + "|documentation>!\nATTN: <@U02G1BD617E>"} 
+							response2 = requests.post(SLACKURL, data=json.dumps(postThis2), headers={'Content-Type': 'application/json'})
+					except:
+						pass
+			except:
+				pass
+	
 
 
 if len(todaysLinks) > 0:
