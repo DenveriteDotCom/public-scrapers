@@ -28,7 +28,7 @@ date = str(date.month).zfill(2) + '/' + str(date.day).zfill(2) + '/' + str(date.
 
 # Here's the Selenium setup.
 
-timer = 2
+timer = 4
 chrome_options = Options()
 options = [
     "--headless",
