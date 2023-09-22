@@ -37,7 +37,7 @@ for i in addys:
 
 # Here's the Selenium setup.
 
-timer = 2
+timer = 5
 chrome_options = Options()
 options = [
     "--headless",
