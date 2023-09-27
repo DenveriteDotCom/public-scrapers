@@ -67,8 +67,8 @@ browser.switch_to.frame(browser.find_element('xpath', '//*[@id="LoginFrame"]'))
 browser.find_element('xpath', '//*[@id="username"]').send_keys('kevinjbeaty')
 browser.find_element('xpath', '//*[@id="passwordRequired"]').send_keys(CITYLOGIN)
 browser.find_element('xpath', '/html/body/main/app-root/div/aca-login-panel/form/div[5]/accela-button-primary/div/button/span').click()
-time.sleep(20)
-
+time.sleep(10)
+browser.switch_to.parent_frame()
 browser.find_element('xpath','//a[contains(text(), "Development Services")]').click()
 time.sleep(timer)
 
