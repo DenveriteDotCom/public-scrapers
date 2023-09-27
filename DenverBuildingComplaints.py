@@ -32,12 +32,8 @@ timer = 6
 chrome_options = Options()
 options = [
     "--headless",
-    "--disable-gpu",
     "--window-size=1920,1200",
-    "--ignore-certificate-errors",
-    "--disable-extensions",
-    "--no-sandbox",
-    "--disable-dev-shm-usage"
+    "--ignore-certificate-errors"
 ]
 for option in options:
     chrome_options.add_argument(option)
@@ -58,8 +54,8 @@ browser.switch_to.frame(browser.find_element('xpath', '//*[@id="LoginFrame"]'))
 browser.find_element('xpath', '//*[@id="username"]').send_keys('kevinjbeaty')
 browser.find_element('xpath', '//*[@id="passwordRequired"]').send_keys(CITYLOGIN)
 browser.find_element('xpath', '/html/body/main/app-root/div/aca-login-panel/form/div[5]/accela-button-primary/div/button/span').click()
-time.sleep(timer)
-browser.find_element('xpath','//*[@id="span_tab_1"]/table/tbody/tr/td[2]').click()
+time.sleep(10)
+browser.find_element('xpath','//a[contains(text(), "Development Services")]').click()
 time.sleep(timer)
 
 # Select design proposals and search for all entries
