@@ -58,7 +58,7 @@ browser = webdriver.Chrome(options=chrome_options)
 
 url = 'https://www.denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Community-Planning-and-Development/E-permits/E-permits-portal'
 browser.get(url)
-time.sleep(timer)
+time.sleep(8)
 
 
 # Login to the portal
