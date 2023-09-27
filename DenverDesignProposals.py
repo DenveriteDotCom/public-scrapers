@@ -69,6 +69,8 @@ browser.find_element('xpath', '//*[@id="passwordRequired"]').send_keys(CITYLOGIN
 browser.find_element('xpath', '/html/body/main/app-root/div/aca-login-panel/form/div[5]/accela-button-primary/div/button/span').click()
 time.sleep(10)
 
-response2 = requests.post(SLACKURL, data=json.dumps(browser.page_source), headers={'Content-Type': 'application/json'})
+postThis2 = {'text':browser.page_source} 
+response2 = requests.post(SLACKURL, data=json.dumps(postThis2), headers={'Content-Type': 'application/json'})
+
 
 
