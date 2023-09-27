@@ -68,7 +68,7 @@ browser.find_element('xpath', '//*[@id="username"]').send_keys('kevinjbeaty')
 browser.find_element('xpath', '//*[@id="passwordRequired"]').send_keys(CITYLOGIN)
 browser.find_element('xpath', '/html/body/main/app-root/div/aca-login-panel/form/div[5]/accela-button-primary/div/button/span').click()
 time.sleep(10)
-browser.find_element('xpath','/html/body/form/div[4]/div/div[4]/div[2]/div/div/div[2]/span[1]/span[2]/table/tbody/tr').click()
+browser.find_element_by_xpath("//a[contains(text(), 'Development Services')]").click()
 time.sleep(timer)
 
 # Select design proposals and search for all entries
