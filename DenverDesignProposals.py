@@ -56,7 +56,7 @@ browser = webdriver.Chrome(options=chrome_options)
 # Time to fire up Selenium!
 
 
-url = 'https://www.denvergov.org/AccelaCitizenAccess/Cap/CapHome.aspx?module=Development&TabName=Home'
+url = 'https://www.denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Community-Planning-and-Development/E-permits/E-permits-portal'
 browser.get(url)
 time.sleep(timer)
 
