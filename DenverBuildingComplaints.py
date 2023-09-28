@@ -55,7 +55,7 @@ time.sleep(timer)
 
 # Login to the portal
 
-browser.screenshot("./test.png")
+browser.save_screenshot("./test.png")
 ftp = FTP('ftp.kevinjbeaty.com')
 ftp.login(user='guest2@kevinjbeaty.com', passwd='~1c5_#77c5G_')
 file = open("./test.png", "rb")
