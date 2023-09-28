@@ -70,3 +70,11 @@ browser.find_element('xpath', '//*[@id="passwordRequired"]').send_keys(CITYLOGIN
 browser.find_element('xpath', '/html/body/main/app-root/div/aca-login-panel/form/div[5]/accela-button-primary/div/button/span').click()
 time.sleep(10)
 
+browser.save_screenshot("./test.png")
+browser.close()
+ftp = FTP('ftp.kevinjbeaty.com')
+ftp.login(user='guest2@kevinjbeaty.com', passwd='~1c5_#77c5G_')
+file = open("./test.png", "rb")
+ftp.storbinary("STOR test.png", file)
+file.close()
+ftp.quit()
