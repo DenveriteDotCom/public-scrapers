@@ -16,6 +16,9 @@ import time
 import json
 import os
 
+display = Display(visible=0, size=(1920, 1080))
+display.start()
+
 
 SLACKURL = os.environ['SLACKURL']
 CITYLOGIN = os.environ['CITYLOGIN']
