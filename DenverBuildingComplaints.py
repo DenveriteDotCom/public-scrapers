@@ -1,6 +1,5 @@
 # This is a script to check in on new design proposals in Denver every day.
 
-from pyvirtualdisplay import Display
 
 from bs4 import BeautifulSoup
 
@@ -9,6 +8,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 
+from pyvirtualdisplay import Display
 
 import requests
 from datetime import datetime, timedelta
