@@ -58,5 +58,5 @@ time.sleep(5)
 browser.find_element('xpath', '/html/body/main/app-root/div/aca-login-panel/form/div[5]/accela-button-primary/div/button/span').click()
 time.sleep(10)
 
-print(browser.find_element('xpath', '//*[@id="ctl00_PlaceHolderMain_labelUserName"]').text)
+print(browser.page_source)
 
