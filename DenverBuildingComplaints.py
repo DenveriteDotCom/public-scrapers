@@ -8,18 +8,11 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 
-from pyvirtualdisplay import Display
-from ftplib import FTP
-
 import requests
 from datetime import datetime, timedelta
 import time
 import json
 import os
-
-display = Display(visible=0, size=(1920, 1080))
-display.start()
-
 
 SLACKURL = os.environ['SLACKURL']
 CITYLOGIN = os.environ['CITYLOGIN']
@@ -52,17 +45,9 @@ url = 'https://www.denvergov.org/Government/Agencies-Departments-Offices/Agencie
 browser.get(url)
 time.sleep(timer)
 
+print(browser.find_element('xpath', '//*[@id="ctl00_PlaceHolderMain_areaNotLoggedIn"]').text)
 
 # Login to the portal
-
-browser.save_screenshot("./test.png")
-ftp = FTP('ftp.kevinjbeaty.com')
-ftp.login(user='guest2@kevinjbeaty.com', passwd='~1c5_#77c5G_')
-file = open("./test.png", "rb")
-ftp.storbinary("STOR test.png", file)
-file.close()
-ftp.quit()
-
 
 browser.switch_to.frame(browser.find_element('xpath', '//*[@id="LoginFrame"]'))
 browser.find_element('xpath', '//*[@id="username"]').send_keys('kevinjbeaty')
@@ -70,11 +55,5 @@ browser.find_element('xpath', '//*[@id="passwordRequired"]').send_keys(CITYLOGIN
 browser.find_element('xpath', '/html/body/main/app-root/div/aca-login-panel/form/div[5]/accela-button-primary/div/button/span').click()
 time.sleep(10)
 
-browser.save_screenshot("./test.png")
-browser.close()
-ftp = FTP('ftp.kevinjbeaty.com')
-ftp.login(user='guest2@kevinjbeaty.com', passwd='~1c5_#77c5G_')
-file = open("./test.png", "rb")
-ftp.storbinary("STOR test.png", file)
-file.close()
-ftp.quit()
+print(browser.find_element('xpath', '//*[@id="ctl00_PlaceHolderMain_labelUserName"]').text)
+
