@@ -60,7 +60,7 @@ browser.find_element('xpath', '//*[@id="passwordRequired"]').send_keys(CITYLOGIN
 browser.find_element('xpath', '/html/body/main/app-root/div/aca-login-panel/form/div[5]/accela-button-primary/div/button/span').click()
 time.sleep(10)
 
-content = browser.find_element('xpath','//*[@id="ctl00_HeaderNavigation_divNavigation"]')
+content = browser
 content.screenshot("./test.png")
 browser.close()
 ftp = FTP('ftp.kevinjbeaty.com')
