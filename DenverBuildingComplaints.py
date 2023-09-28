@@ -50,10 +50,13 @@ print(browser.find_element('xpath', '//*[@id="ctl00_PlaceHolderMain_areaNotLogge
 # Login to the portal
 
 browser.switch_to.frame(browser.find_element('xpath', '//*[@id="LoginFrame"]'))
+time.sleep(5)
 browser.find_element('xpath', '//*[@id="username"]').send_keys('kevinjbeaty')
+time.sleep(5)
 browser.find_element('xpath', '//*[@id="passwordRequired"]').send_keys(CITYLOGIN)
+time.sleep(5)
 browser.find_element('xpath', '/html/body/main/app-root/div/aca-login-panel/form/div[5]/accela-button-primary/div/button/span').click()
-time.sleep(100)
+time.sleep(10)
 
 print(browser.find_element('xpath', '//*[@id="ctl00_PlaceHolderMain_labelUserName"]').text)
 
