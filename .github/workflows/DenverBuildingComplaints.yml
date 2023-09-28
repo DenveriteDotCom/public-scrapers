@@ -11,6 +11,6 @@ jobs:
       - name: Check out this repo
         uses: actions/checkout@v2
       - name: Install dependencies
-        run: python -m pip install beautifulsoup4 webdriver_manager selenium
+        run: python -m pip install beautifulsoup4 webdriver_manager selenium PyVirtualDisplay
       - name: Run the script
         run: python DenverBuildingComplaints.py
