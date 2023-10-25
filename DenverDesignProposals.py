@@ -65,4 +65,4 @@ browser.find_element('xpath', '//*[@id="passwordRequired"]').send_keys('kiL2M@0m
 time.sleep(3)
 browser.find_element('xpath', '/html/body/main/app-root/div/aca-login-panel/form/div[5]/accela-button-primary/div/button/span').click()
 time.sleep(10)
-print(browser.find_element('xpath', '//*[@id="ctl00_HeaderNavigation_divNavigation"]').text)
+print(browser.page_source)
