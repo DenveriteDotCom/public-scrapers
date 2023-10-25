@@ -37,10 +37,15 @@ for i in addys:
 
 # Here's the Selenium setup.
 
-timer = 5
-options = Options()
-options.add_argument("-headless")
-browser = webdriver.Chrome(options=options)
+timer = 6
+chrome_options = Options()
+options = [
+    "--window-size=1920,1200",
+    "--ignore-certificate-errors"
+]
+for option in options:
+    chrome_options.add_argument(option)
+browser = webdriver.Chrome(options=chrome_options)
 
 
 # Time to fire up Selenium!
@@ -58,5 +63,5 @@ browser.find_element('xpath', '//*[@id="username"]').send_keys('kevinjbeaty')
 browser.find_element('xpath', '//*[@id="passwordRequired"]').send_keys('kiL2M@0mDXtJAu$')
 time.sleep(3)
 browser.find_element('xpath', '/html/body/main/app-root/div/aca-login-panel/form/div[5]/accela-button-primary/div/button/span').click()
-time.sleep(60)
+time.sleep(120)
 browser.find_element('xpath','/html/body/form/div[4]/div/div[4]/div[2]/div/div/div[2]/span[1]/span[2]/table/tbody/tr/td[2]/div/a').click()
