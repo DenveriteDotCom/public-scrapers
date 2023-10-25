@@ -58,15 +58,11 @@ time.sleep(10)
 
 
 # Login to the portal
-
+print(browser.find_element('xpath', '//*[@id="ctl00_PlaceHolderMain_divContent"]').text)
 browser.switch_to.frame(browser.find_element('xpath', '//*[@id="LoginFrame"]'))
 browser.find_element('xpath', '//*[@id="username"]').send_keys('kevinjbeaty')
 browser.find_element('xpath', '//*[@id="passwordRequired"]').send_keys('kiL2M@0mDXtJAu$')
-print(browser.find_element('xpath', '//*[@id="nav_parent_container"]').text)
-time.sleep(10)
+time.sleep(3)
 browser.find_element('xpath', '/html/body/main/app-root/div/aca-login-panel/form/div[5]/accela-button-primary/div/button/span').click()
 time.sleep(10)
 print(browser.find_element('xpath', '//*[@id="nav_parent_container"]').text)
-browser.find_element('xpath','//a[contains(text(), "Development Services")]').click()
-time.sleep(timer)
-print(browser.find_element('xpath', '//*[@id="divMyPermitListSection"]').text)
