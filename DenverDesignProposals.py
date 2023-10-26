@@ -40,7 +40,6 @@ for i in addys:
 timer = 6
 chrome_options = Options()
 options = [
-    "--headless",
     "--window-size=1920,1200",
     "--ignore-certificate-errors"
 ]
