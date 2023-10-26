@@ -40,6 +40,7 @@ for i in addys:
 timer = 6
 chrome_options = Options()
 options = [
+    "--headless",
     "--window-size=1920,1200",
     "--ignore-certificate-errors"
 ]
@@ -64,4 +65,4 @@ browser.find_element('xpath', '//*[@id="passwordRequired"]').send_keys('kiL2M@0m
 time.sleep(3)
 browser.find_element('xpath', '/html/body/main/app-root/div/aca-login-panel/form/div[5]/accela-button-primary/div/button/span').click()
 time.sleep(120)
-browser.find_element('xpath','/html/body/form/div[4]/div/div[4]/div[2]/div/div/div[2]/span[1]/span[2]/table/tbody/tr/td[2]/div/a').click()
+browser.find_element('xpath',"//a[@title='Development Services']").click()
