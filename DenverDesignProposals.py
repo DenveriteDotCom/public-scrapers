@@ -55,13 +55,13 @@ browser = webdriver.Chrome(options=chrome_options)
 
 url = 'https://www.denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Community-Planning-and-Development/E-permits/E-permits-portal'
 browser.get(url)
-time.sleep(10)
+time.sleep(6)
 
 
 # Login to the portal
 browser.switch_to.frame(browser.find_element('xpath', '//*[@id="LoginFrame"]'))
 browser.find_element('xpath', '//*[@id="username"]').send_keys('kevinjbeaty')
-browser.find_element('xpath', '//*[@id="passwordRequired"]').send_keys('D0natello!')
+browser.find_element('xpath', '//*[@id="passwordRequired"]').send_keys(CITYLOGIN)
 time.sleep(timer)
 
 browser.find_element('xpath', '//*[@id="FirstAnchorInACAMainContent"]/app-login-screen/div/p-card/div/div/div/aca-login-panel/form/div[5]/accela-button-primary/div/button/span').click()
@@ -83,6 +83,16 @@ soup = BeautifulSoup(html, 'html.parser')
 rows = soup.find_all('tr')[3:-2]
 records = []
 for i in rows:
-    if i.find_all('td')[2].text.replace('\n',"") == '12/20/2024':
-        records.append(i.find_all('td')[3].find('a')['href'])
-print(records)
+	if i.find_all('td')[2].text.replace('\n',"") == '12/20/2024':
+        	records.append(i.find_all('td')[3].find('a')['href'])
+
+for i in records:
+	browser.get('https://aca-prod.accela.com/' + i)
+	time.sleep(6)
+	soup = BeautifulSoup(browser.page_source, 'html.parser')
+	units = int(soup.find(string=re.compile('number of residential')).next.next.next.text.replace('\n',''))
+	use1 = soup.find(string=re.compile('Proposed Use 1')).next.next.next.text.replace('\n','')
+	use2 = soup.find(string=re.compile('Proposed Use 2')).next.next.next.text.replace('\n','')
+	projectId = soup.find(string=re.compile('Project Master Number')).next.next.next.text.replace('\n','')
+	addy = soup.find('div',{'id':'divWorkLocationInfo'}).text.replace('\n','').replace('\xa0','')
+	desc = soup.find(string=re.compile('Project Description')).next.next.next.text.replace('\n','')
