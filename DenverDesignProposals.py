@@ -112,9 +112,9 @@ for i in records:
 		desc = soup.find(string=re.compile('Project Description')).next.next.next.text.replace('\n','').encode('latin-1', 'ignore').decode('utf-8')
 	except:
 		desc = ''
-	if units < 20:
+	if units < 49:
 		postThis = '{"text":":office: *New formal site development plan!*\n\n*<' + url +  '|' + addy + '>*\nUnits:' + str(units) + '\n\n' + use1 + '\n' + use2 + '\n' + desc + '"}'
 		response = requests.post(SLACKURL, data=postThis, headers={'Content-type': 'application/json'})
 	else:
-		postThis = '{"text":":office: *New formal site development plan!*\nATTN <!here>, this one has more than 20 units!\n\n*<' + url +  '|' + addy + '>*\nUnits:' + str(units) + '\n\n' + use1 + '\n' + use2 + '\n' + desc + '"}'
+		postThis = '{"text":":office: *New formal site development plan!*\nATTN <!here>, this one has more than 50 units!\n\n*<' + url +  '|' + addy + '>*\nUnits:' + str(units) + '\n\n' + use1 + '\n' + use2 + '\n' + desc + '"}'
 		response = requests.post(SLACKURL, data=postThis, headers={'Content-type': 'application/json'})
