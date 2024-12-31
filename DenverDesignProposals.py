@@ -23,8 +23,8 @@ CITYLOGIN = os.environ['CITYLOGIN']
 # What day is today? This needs a subtraction if it's posted after 18:00 MST.
 date = datetime.now()
 date = date - timedelta(days=1)
-date = str(date.month).zfill(2) + '/' + str(date.day).zfill(2) + '/' + str(date.year)
 print(date)
+date = str(date.month).zfill(2) + '/' + str(date.day).zfill(2) + '/' + str(date.year)
 
 
 # Let's load in the addresses we want to keep tabs on.
@@ -113,8 +113,8 @@ for i in records:
 	except:
 		desc = ''
 	if units < 20:
-		postThis = '{"text":"New formal site development plan!\n\n' + addy + '\n' + use1 + '\n' + use2 + '\n' + desc + '"}'
+		postThis = '{"text":"New formal site development plan!\n\n*' + addy + '*\nUnits:' + units + '\n\n' + use1 + '\n' + use2 + '\n' + desc + '"}'
 		response = requests.post(SLACKURL, data=postThis, headers={'Content-type': 'application/json'})
 	else:
-		postThis = '{"text":"New formal site development plan! WITH A LOT OF UNITS\n\n' + addy + '\n' + use1 + '\n' + use2 + '\n' + desc + '"}'
+		postThis = '{"text":"New formal site development plan!\nATTN <!here>, this one has more than 20 units!\n\n*' + addy + '*\nUnits:' + units + '\n\n' + use1 + '\n' + use2 + '\n' + desc + '"}'
 		response = requests.post(SLACKURL, data=postThis, headers={'Content-type': 'application/json'})
