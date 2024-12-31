@@ -92,7 +92,7 @@ for i in records:
 	time.sleep(10)
 	soup = BeautifulSoup(browser.page_source, 'html.parser')
 	try:
-		units = int(soup.find(string=re.compile('number of residential')).next.next.next.text.replace('\n','')).encode()
+		units = int(soup.find(string=re.compile('number of residential')).next.next.next.text.replace('\n',''))
 	except:
 		units = ''
 	try:
