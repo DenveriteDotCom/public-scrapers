@@ -98,7 +98,7 @@ for i in records:
 	desc = soup.find(string=re.compile('Project Description')).next.next.next.text.replace('\n','')
 	if units < 20:
 		postThis = 'New formal site development plan!\n\n' + address + '\n' + use1 + '\n' + use2 + '\n' + desc
-        	response = requests.post(SLACKURL, data=json.dumps(postThis), headers={'Content-Type': 'application/json'}) 
+		response = requests.post(SLACKURL, data=json.dumps(postThis), headers={'Content-Type': 'application/json'}) 
 	else:
 		postThis = 'New formal site development plan WITH A LOT OF UNITS!\n\n' + address + '\n' + use1 + '\n' + use2 + '\n' + desc
-        	response = requests.post(SLACKURL, data=json.dumps(postThis), headers={'Content-Type': 'application/json'}) 
+		response = requests.post(SLACKURL, data=json.dumps(postThis), headers={'Content-Type': 'application/json'}) 
