@@ -82,6 +82,6 @@ soup = BeautifulSoup(html, 'html.parser')
 rows = soup.find_all('tr')[3:-2]
 records = []
 for i in rows:
-    if i.find_all('td')[2].text.replace('\n',"") == '12/19/2024':
+    if i.find_all('td')[2].text.replace('\n',"") == '12/20/2024':
         records.append(i.find_all('td')[3].find('a')['href'])
 print(records)
