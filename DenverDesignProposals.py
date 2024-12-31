@@ -24,6 +24,7 @@ CITYLOGIN = os.environ['CITYLOGIN']
 date = datetime.now()
 date = date - timedelta(days=1)
 date = str(date.month).zfill(2) + '/' + str(date.day).zfill(2) + '/' + str(date.year)
+print(date)
 
 
 # Let's load in the addresses we want to keep tabs on.
