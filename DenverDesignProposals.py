@@ -15,7 +15,7 @@ from datetime import datetime, timedelta
 import time
 import json
 import os
-
+import re
 
 SLACKURL = os.environ['SLACKURL']
 CITYLOGIN = os.environ['CITYLOGIN']
@@ -93,6 +93,12 @@ for i in records:
 	units = int(soup.find(string=re.compile('number of residential')).next.next.next.text.replace('\n',''))
 	use1 = soup.find(string=re.compile('Proposed Use 1')).next.next.next.text.replace('\n','')
 	use2 = soup.find(string=re.compile('Proposed Use 2')).next.next.next.text.replace('\n','')
-	projectId = soup.find(string=re.compile('Project Master Number')).next.next.next.text.replace('\n','')
+	#projectId = soup.find(string=re.compile('Project Master Number')).next.next.next.text.replace('\n','')
 	addy = soup.find('div',{'id':'divWorkLocationInfo'}).text.replace('\n','').replace('\xa0','')
 	desc = soup.find(string=re.compile('Project Description')).next.next.next.text.replace('\n','')
+	if units < 20:
+		postThis = 'New formal site development plan!\n\n' + address + '\n' + use1 + '\n' + use2 + '\n' + desc
+        	response = requests.post(SLACKURL, data=json.dumps(postThis), headers={'Content-Type': 'application/json'}) 
+	else:
+		postThis = 'New formal site development plan WITH A LOT OF UNITS!\n\n' + address + '\n' + use1 + '\n' + use2 + '\n' + desc
+        	response = requests.post(SLACKURL, data=json.dumps(postThis), headers={'Content-Type': 'application/json'}) 
