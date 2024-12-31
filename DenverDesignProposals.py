@@ -113,8 +113,8 @@ for i in records:
 	except:
 		desc = ''
 	if units < 20:
-		postThis = 'New formal site development plan!\n\n' + addy + '\n' + use1 + '\n' + use2 + '\n' + desc
-		requests.post(SLACKURL, data=postThis, headers={'Content-type': 'application/json'})
+		postThis = '{"text":"New formal site development plan!\n\n' + addy + '\n' + use1 + '\n' + use2 + '\n' + desc + '"}'
+		response = requests.post(SLACKURL, data=postThis, headers={'Content-type': 'application/json'})
 	else:
-		postThis = 'New formal site development plan WITH A LOT OF UNITS!\n\n' + addy + '\n' + use1 + '\n' + use2 + '\n' + desc
-		requests.post(SLACKURL, data=postThis, headers={'Content-type': 'application/json'})
+		postThis = '{"text":"New formal site development plan! WITH A LOT OF UNITS\n\n' + addy + '\n' + use1 + '\n' + use2 + '\n' + desc + '"}'
+		response = requests.post(SLACKURL, data=postThis, headers={'Content-type': 'application/json'})
