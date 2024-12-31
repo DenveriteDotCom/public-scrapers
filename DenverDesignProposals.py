@@ -27,12 +27,12 @@ date = str(date.month).zfill(2) + '/' + str(date.day).zfill(2) + '/' + str(date.
 
 
 # Let's load in the addresses we want to keep tabs on.
-addys = requests.get('https://docs.google.com/spreadsheets/d/e/2PACX-1vSmhBBSJWwQSgegcqc8rZ6W5w_CT3XUPKPecLgSajw36_oOtM5ql7j0r-PbN0hDOSl6wAXH2EkNefE-/pub?output=tsv').text
-addys = addys.split('\r\n')
-addys = [x.upper() for x in addys]
-watchList = []
-for i in addys:
-	watchList.append(i.split('\t')[1])
+#addys = requests.get('https://docs.google.com/spreadsheets/d/e/2PACX-1vSmhBBSJWwQSgegcqc8rZ6W5w_CT3XUPKPecLgSajw36_oOtM5ql7j0r-PbN0hDOSl6wAXH2EkNefE-/pub?output=tsv').text
+#addys = addys.split('\r\n')
+#addys = [x.upper() for x in addys]
+#watchList = []
+#for i in addys:
+#	watchList.append(i.split('\t')[1])
 
 
 
@@ -90,12 +90,27 @@ for i in records:
 	browser.get('https://aca-prod.accela.com/' + i)
 	time.sleep(6)
 	soup = BeautifulSoup(browser.page_source, 'html.parser')
-	units = int(soup.find(string=re.compile('number of residential')).next.next.next.text.replace('\n',''))
-	use1 = soup.find(string=re.compile('Proposed Use 1')).next.next.next.text.replace('\n','')
-	use2 = soup.find(string=re.compile('Proposed Use 2')).next.next.next.text.replace('\n','')
+	try:
+		units = int(soup.find(string=re.compile('number of residential')).next.next.next.text.replace('\n',''))
+	except:
+		pass
+	try:
+		use1 = soup.find(string=re.compile('Proposed Use 1')).next.next.next.text.replace('\n','')
+	except:
+		pass
+	try:
+		use2 = soup.find(string=re.compile('Proposed Use 2')).next.next.next.text.replace('\n','')
+	except:
+		pass
 	#projectId = soup.find(string=re.compile('Project Master Number')).next.next.next.text.replace('\n','')
-	addy = soup.find('div',{'id':'divWorkLocationInfo'}).text.replace('\n','').replace('\xa0','')
-	desc = soup.find(string=re.compile('Project Description')).next.next.next.text.replace('\n','')
+	try:
+		addy = soup.find('div',{'id':'divWorkLocationInfo'}).text.replace('\n','').replace('\xa0','')
+	except:
+		pass
+	try:
+		desc = soup.find(string=re.compile('Project Description')).next.next.next.text.replace('\n','')
+	except:
+		pass
 	if units < 20:
 		postThis = 'New formal site development plan!\n\n' + address + '\n' + use1 + '\n' + use2 + '\n' + desc
 		response = requests.post(SLACKURL, data=json.dumps(postThis), headers={'Content-Type': 'application/json'}) 
