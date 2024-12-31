@@ -88,7 +88,8 @@ for i in rows:
         	records.append(i.find_all('td')[3].find('a')['href'])
 
 for i in records:
-	browser.get('https://aca-prod.accela.com/' + i)
+	url = 'https://aca-prod.accela.com/' + i
+	browser.get(url)
 	time.sleep(10)
 	soup = BeautifulSoup(browser.page_source, 'html.parser')
 	try:
@@ -113,8 +114,8 @@ for i in records:
 	except:
 		desc = ''
 	if units < 20:
-		postThis = '{"text":"New formal site development plan!\n\n*' + addy + '*\nUnits:' + units + '\n\n' + use1 + '\n' + use2 + '\n' + desc + '"}'
+		postThis = '{"text":"New formal site development plan!\n\n*<' + url +  '|' + addy + '>*\nUnits:' + str(units) + '\n\n' + use1 + '\n' + use2 + '\n' + desc + '"}'
 		response = requests.post(SLACKURL, data=postThis, headers={'Content-type': 'application/json'})
 	else:
-		postThis = '{"text":"New formal site development plan!\nATTN <!here>, this one has more than 20 units!\n\n*' + addy + '*\nUnits:' + units + '\n\n' + use1 + '\n' + use2 + '\n' + desc + '"}'
+		postThis = '{"text":"New formal site development plan!\nATTN <!here>, this one has more than 20 units!\n\n*<' + url +  '|' + addy + '>*\nUnits:' + str(units) + '\n\n' + use1 + '\n' + use2 + '\n' + desc + '"}'
 		response = requests.post(SLACKURL, data=postThis, headers={'Content-type': 'application/json'})
