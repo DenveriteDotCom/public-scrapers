@@ -88,29 +88,29 @@ for i in rows:
 
 for i in records:
 	browser.get('https://aca-prod.accela.com/' + i)
-	time.sleep(6)
+	time.sleep(12)
 	soup = BeautifulSoup(browser.page_source, 'html.parser')
 	try:
 		units = int(soup.find(string=re.compile('number of residential')).next.next.next.text.replace('\n',''))
 	except:
-		pass
+		units = ''
 	try:
 		use1 = soup.find(string=re.compile('Proposed Use 1')).next.next.next.text.replace('\n','')
 	except:
-		pass
+		use1 = ''
 	try:
 		use2 = soup.find(string=re.compile('Proposed Use 2')).next.next.next.text.replace('\n','')
 	except:
-		pass
+		use2 = ''
 	#projectId = soup.find(string=re.compile('Project Master Number')).next.next.next.text.replace('\n','')
 	try:
-		addy = soup.find('div',{'id':'divWorkLocationInfo'}).text.replace('\n','').replace('\xa0','')
+		addy = soup.find('div',{'id':'divWorkLocationInfo'}).text.replace('\n','').replace('\xa0','').replace('*','')
 	except:
-		pass
+		addy = ''
 	try:
 		desc = soup.find(string=re.compile('Project Description')).next.next.next.text.replace('\n','')
 	except:
-		pass
+		desc = ''
 	if units < 20:
 		postThis = 'New formal site development plan!\n\n' + address + '\n' + use1 + '\n' + use2 + '\n' + desc
 		response = requests.post(SLACKURL, data=json.dumps(postThis), headers={'Content-Type': 'application/json'}) 
