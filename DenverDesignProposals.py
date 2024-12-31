@@ -37,7 +37,7 @@ for i in addys:
 
 # Here's the Selenium setup.
 
-timer = 6
+timer = 3
 chrome_options = Options()
 options = [
     "--headless",
@@ -58,11 +58,30 @@ time.sleep(10)
 
 
 # Login to the portal
-print(browser.find_element('xpath', '//*[@id="ctl00_PlaceHolderMain_divContent"]').text)
 browser.switch_to.frame(browser.find_element('xpath', '//*[@id="LoginFrame"]'))
 browser.find_element('xpath', '//*[@id="username"]').send_keys('kevinjbeaty')
-browser.find_element('xpath', '//*[@id="passwordRequired"]').send_keys('kiL2M@0mDXtJAu$')
-time.sleep(3)
-browser.find_element('xpath', '/html/body/main/app-root/div/aca-login-panel/form/div[5]/accela-button-primary/div/button/span').click()
-time.sleep(120)
-browser.find_element('xpath',"//a[@title='Development Services']").click()
+browser.find_element('xpath', '//*[@id="passwordRequired"]').send_keys('D0natello!')
+time.sleep(timer)
+
+browser.find_element('xpath', '//*[@id="FirstAnchorInACAMainContent"]/app-login-screen/div/p-card/div/div/div/aca-login-panel/form/div[5]/accela-button-primary/div/button/span').click()
+time.sleep(20)
+
+browser.switch_to.parent_frame()
+browser.find_element('xpath','//*[@id="span_tab_1"]/table/tbody/tr/td[2]/div/a').click()
+time.sleep(timer)
+
+select = Select(browser.find_element('xpath','//*[@id="ctl00_PlaceHolderMain_generalSearchForm_ddlGSPermitType"]'))
+select.select_by_visible_text('Formal Site Development Plan')
+time.sleep(1)
+browser.find_element('xpath','//*[@id="ctl00_PlaceHolderMain_btnNewSearch"]').click()
+
+time.sleep(20)
+
+html = browser.find_element('xpath','//*[@id="ctl00_PlaceHolderMain_dgvPermitList_gdvPermitList"]/tbody').get_attribute('innerHTML')
+soup = BeautifulSoup(html, 'html.parser')
+rows = soup.find_all('tr')[3:-2]
+records = []
+for i in rows:
+    if i.find_all('td')[2].text.replace('\n',"") == '12/19/2024':
+        records.append(i.find_all('td')[3].find('a')['href'])
+print(records)
