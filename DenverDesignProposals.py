@@ -24,6 +24,7 @@ CITYLOGIN = os.environ['CITYLOGIN']
 date = datetime.now()
 date = date - timedelta(days=1)
 date = str(date.month).zfill(2) + '/' + str(date.day).zfill(2) + '/' + str(date.year)
+print(date)
 
 
 # Let's load in the addresses we want to keep tabs on.
@@ -91,31 +92,29 @@ for i in records:
 	time.sleep(10)
 	soup = BeautifulSoup(browser.page_source, 'html.parser')
 	try:
-		units = int(soup.find(string=re.compile('number of residential')).next.next.next.text.replace('\n',''))
+		units = int(soup.find(string=re.compile('number of residential')).next.next.next.text.replace('\n','')).encode()
 	except:
 		units = ''
 	try:
-		use1 = soup.find(string=re.compile('Proposed Use 1')).next.next.next.text.replace('\n','')
+		use1 = soup.find(string=re.compile('Proposed Use 1')).next.next.next.text.replace('\n','').encode()
 	except:
 		use1 = ''
 	try:
-		use2 = soup.find(string=re.compile('Proposed Use 2')).next.next.next.text.replace('\n','')
+		use2 = soup.find(string=re.compile('Proposed Use 2')).next.next.next.text.replace('\n','').encode()
 	except:
 		use2 = ''
 	#projectId = soup.find(string=re.compile('Project Master Number')).next.next.next.text.replace('\n','')
 	try:
-		addy = soup.find('div',{'id':'divWorkLocationInfo'}).text.replace('\n','').replace('\xa0','').replace('*','')
+		addy = soup.find('div',{'id':'divWorkLocationInfo'}).text.replace('\n','').replace('\xa0','').replace('*','').encode()
 	except:
 		addy = ''
 	try:
-		desc = soup.find(string=re.compile('Project Description')).next.next.next.text.replace('\n','')
+		desc = soup.find(string=re.compile('Project Description')).next.next.next.text.replace('\n','').encode()
 	except:
 		desc = ''
 	if units < 20:
 		postThis = 'New formal site development plan!\n\n' + addy + '\n' + use1 + '\n' + use2 + '\n' + desc
 		requests.post(SLACKURL, data=postThis, headers={'Content-type': 'application/json'})
-		print(postThis)
 	else:
 		postThis = 'New formal site development plan WITH A LOT OF UNITS!\n\n' + addy + '\n' + use1 + '\n' + use2 + '\n' + desc
 		requests.post(SLACKURL, data=postThis, headers={'Content-type': 'application/json'})
-		print(postThis)
