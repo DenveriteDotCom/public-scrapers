@@ -65,7 +65,7 @@ browser.find_element('xpath', '//*[@id="passwordRequired"]').send_keys(CITYLOGIN
 time.sleep(timer)
 
 browser.find_element('xpath', '//*[@id="FirstAnchorInACAMainContent"]/app-login-screen/div/p-card/div/div/div/aca-login-panel/form/div[5]/accela-button-primary/div/button/span').click()
-time.sleep(20)
+time.sleep(10)
 
 browser.switch_to.parent_frame()
 browser.find_element('xpath','//*[@id="span_tab_1"]/table/tbody/tr/td[2]/div/a').click()
@@ -76,7 +76,7 @@ select.select_by_visible_text('Formal Site Development Plan')
 time.sleep(1)
 browser.find_element('xpath','//*[@id="ctl00_PlaceHolderMain_btnNewSearch"]').click()
 
-time.sleep(20)
+time.sleep(10)
 
 html = browser.find_element('xpath','//*[@id="ctl00_PlaceHolderMain_dgvPermitList_gdvPermitList"]/tbody').get_attribute('innerHTML')
 soup = BeautifulSoup(html, 'html.parser')
@@ -88,7 +88,7 @@ for i in rows:
 
 for i in records:
 	browser.get('https://aca-prod.accela.com/' + i)
-	time.sleep(12)
+	time.sleep(10)
 	soup = BeautifulSoup(browser.page_source, 'html.parser')
 	try:
 		units = int(soup.find(string=re.compile('number of residential')).next.next.next.text.replace('\n',''))
@@ -114,6 +114,8 @@ for i in records:
 	if units < 20:
 		postThis = 'New formal site development plan!\n\n' + addy + '\n' + use1 + '\n' + use2 + '\n' + desc
 		response = requests.post(SLACKURL, data=json.dumps(postThis), headers={'Content-Type': 'application/json'}) 
+		print(response)
 	else:
 		postThis = 'New formal site development plan WITH A LOT OF UNITS!\n\n' + addy + '\n' + use1 + '\n' + use2 + '\n' + desc
 		response = requests.post(SLACKURL, data=json.dumps(postThis), headers={'Content-Type': 'application/json'})
+		print(response)
