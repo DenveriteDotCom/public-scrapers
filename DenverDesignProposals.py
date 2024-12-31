@@ -23,7 +23,6 @@ CITYLOGIN = os.environ['CITYLOGIN']
 # What day is today? This needs a subtraction if it's posted after 18:00 MST.
 date = datetime.now()
 date = date - timedelta(days=1)
-print(date)
 date = str(date.month).zfill(2) + '/' + str(date.day).zfill(2) + '/' + str(date.year)
 
 
@@ -84,7 +83,7 @@ soup = BeautifulSoup(html, 'html.parser')
 rows = soup.find_all('tr')[3:-2]
 records = []
 for i in rows:
-	if i.find_all('td')[2].text.replace('\n',"") == '12/20/2024':
+	if i.find_all('td')[2].text.replace('\n',"") == date:
         	records.append(i.find_all('td')[3].find('a')['href'])
 
 for i in records:
@@ -114,8 +113,8 @@ for i in records:
 	except:
 		desc = ''
 	if units < 20:
-		postThis = '{"text":"New formal site development plan!\n\n*<' + url +  '|' + addy + '>*\nUnits:' + str(units) + '\n\n' + use1 + '\n' + use2 + '\n' + desc + '"}'
+		postThis = '{"text":":office: *New formal site development plan!*\n\n*<' + url +  '|' + addy + '>*\nUnits:' + str(units) + '\n\n' + use1 + '\n' + use2 + '\n' + desc + '"}'
 		response = requests.post(SLACKURL, data=postThis, headers={'Content-type': 'application/json'})
 	else:
-		postThis = '{"text":"New formal site development plan!\nATTN <!here>, this one has more than 20 units!\n\n*<' + url +  '|' + addy + '>*\nUnits:' + str(units) + '\n\n' + use1 + '\n' + use2 + '\n' + desc + '"}'
+		postThis = '{"text":":office: *New formal site development plan!*\nATTN <!here>, this one has more than 20 units!\n\n*<' + url +  '|' + addy + '>*\nUnits:' + str(units) + '\n\n' + use1 + '\n' + use2 + '\n' + desc + '"}'
 		response = requests.post(SLACKURL, data=postThis, headers={'Content-type': 'application/json'})
