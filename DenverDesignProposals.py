@@ -94,22 +94,22 @@ for i in records:
 	try:
 		units = int(soup.find(string=re.compile('number of residential')).next.next.next.text.replace('\n',''))
 	except:
-		units = ''
+		units = 0
 	try:
-		use1 = soup.find(string=re.compile('Proposed Use 1')).next.next.next.text.replace('\n','').encode()
+		use1 = soup.find(string=re.compile('Proposed Use 1')).next.next.next.text.replace('\n','').encode('latin-1', 'ignore').decode('utf-8')
 	except:
 		use1 = ''
 	try:
-		use2 = soup.find(string=re.compile('Proposed Use 2')).next.next.next.text.replace('\n','').encode()
+		use2 = soup.find(string=re.compile('Proposed Use 2')).next.next.next.text.replace('\n','').encode('latin-1', 'ignore').decode('utf-8')
 	except:
 		use2 = ''
 	#projectId = soup.find(string=re.compile('Project Master Number')).next.next.next.text.replace('\n','')
 	try:
-		addy = soup.find('div',{'id':'divWorkLocationInfo'}).text.replace('\n','').replace('\xa0','').replace('*','').encode()
+		addy = soup.find('div',{'id':'divWorkLocationInfo'}).text.replace('\n','').replace('\xa0','').replace('*','').encode('latin-1', 'ignore').decode('utf-8')
 	except:
 		addy = ''
 	try:
-		desc = soup.find(string=re.compile('Project Description')).next.next.next.text.replace('\n','').encode()
+		desc = soup.find(string=re.compile('Project Description')).next.next.next.text.replace('\n','').encode('latin-1', 'ignore').decode('utf-8')
 	except:
 		desc = ''
 	if units < 20:
