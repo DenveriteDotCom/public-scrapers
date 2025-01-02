@@ -73,7 +73,7 @@ browser.find_element('xpath','//*[@id="span_tab_1"]/table/tbody/tr/td[2]/div/a')
 time.sleep(timer)
 
 select = Select(browser.find_element('xpath','//*[@id="ctl00_PlaceHolderMain_generalSearchForm_ddlGSPermitType"]'))
-select.select_by_visible_text('Landmark Certificate of Demolition')
+select.select_by_visible_text('Landmark Certificate of Demolition Eligibility')
 time.sleep(1)
 browser.find_element('xpath','//*[@id="ctl00_PlaceHolderMain_btnNewSearch"]').click()
 
