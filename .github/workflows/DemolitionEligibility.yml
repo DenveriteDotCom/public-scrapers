@@ -1,4 +1,4 @@
-name: Scrape Demolition Eligibilty Apps
+name: Scrape Demolition Apps
 env:
   SLACKURL: ${{ secrets.slackURL }}
   CITYLOGIN: ${{ secrets.cityLogin }}
