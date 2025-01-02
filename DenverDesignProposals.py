@@ -119,3 +119,6 @@ if (len(records) > 0):
 		else:
 			postThis = '{"text":":office: *New formal site development plan!*\nATTN <!here>, this one has more than 50 units!\n\n*<' + url +  '|' + addy + '>*\nUnits:' + str(units) + '\n\n' + use1 + '\n' + use2 + '\n' + desc + '\n\n"}'
 			response = requests.post(SLACKURL, data=postThis, headers={'Content-type': 'application/json'})
+if (len(records) > 10):
+	postThis = '{"text":"There might have been more than 10 entries today, but I didn't check for more :grimacing: sorry. KB will update the code if this keeps being A Thing."}'
+	response = requests.post(SLACKURL, data=postThis, headers={'Content-type': 'application/json'})
