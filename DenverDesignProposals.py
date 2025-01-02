@@ -1,4 +1,4 @@
-# This is a script to check in on new design proposals in Denver every day.
+# This is a script to check on new development plans in Denver every day.
 
 
 from bs4 import BeautifulSoup
