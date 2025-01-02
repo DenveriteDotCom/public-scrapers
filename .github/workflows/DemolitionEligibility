@@ -1,4 +1,4 @@
-name: Scrape Building Complaints
+name: Scrape Demolition Eligibilty Apps
 env:
   SLACKURL: ${{ secrets.slackURL }}
   CITYLOGIN: ${{ secrets.cityLogin }}
@@ -13,4 +13,4 @@ jobs:
       - name: Install dependencies
         run: python -m pip install beautifulsoup4 webdriver_manager selenium PyVirtualDisplay
       - name: Run the script
-        run: python DenverBuildingComplaints.py
+        run: python DemolitionEligibility.py
