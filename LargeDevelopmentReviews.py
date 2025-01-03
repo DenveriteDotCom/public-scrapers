@@ -101,5 +101,5 @@ if (len(records) > 0):
 			desc = soup.find(string=re.compile('Project Description')).next.next.next.text.replace('\n','').encode('latin-1', 'ignore').decode('utf-8')
 		except:
 			desc = ''
-		postThis = '{"text":":cityscape: *New large development review!*\n\n*<' + url +  '|' + addy + '>*\n' + desc + '\n\n"}'
+		postThis = '{"text":":city_sunrise: *New large development review!*\n\n*<' + url +  '|' + addy + '>*\n' + desc + '\n\n"}'
 		response = requests.post(SLACKURL, data=postThis, headers={'Content-type': 'application/json'})
