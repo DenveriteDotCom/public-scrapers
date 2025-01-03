@@ -15,3 +15,4 @@ jobs:
         run: python -m pip install beautifulsoup4 webdriver_manager selenium PyVirtualDisplay
       - name: Run the script
         run: python DdpheViolations.py
+      - run: echo ${{ env.LASTRECORD }}
