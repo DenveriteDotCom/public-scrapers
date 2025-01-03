@@ -16,4 +16,4 @@ jobs:
       - name: Run the script
         run: python DdpheViolations.py
       - name: Update the variable
-        run: echo "{LASTRECORD}={MY_VAR}" >> "$GITHUB_ENV"
+        run: echo "LASTRECORD=HOLLA" >> $GITHUB_ENV
