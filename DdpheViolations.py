@@ -27,9 +27,7 @@ date = date - timedelta(days=1)
 date = str(date.month).zfill(2) + '/' + str(date.day).zfill(2) + '/' + str(date.year)
 print(date)
 print(LASTRECORD)
-env_file = os.getenv('GITHUB_ENV')
-with open(env_file, "a") as myfile:
-    myfile.write("LASTRECORD=Boo!")
+os.environ["LASTRECORD"] = "Boo!"
 print(LASTRECORD)
 
 
