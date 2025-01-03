@@ -1,0 +1,16 @@
+name: Scrape Large Dev Reviews
+env:
+  SLACKURL: ${{ secrets.slackURL }}
+  CITYLOGIN: ${{ secrets.cityLogin }}
+on:
+  workflow_dispatch:
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out this repo
+        uses: actions/checkout@v2
+      - name: Install dependencies
+        run: python -m pip install beautifulsoup4 webdriver_manager selenium PyVirtualDisplay
+      - name: Run the script
+        run: python LargeDevelopmentReview.py
