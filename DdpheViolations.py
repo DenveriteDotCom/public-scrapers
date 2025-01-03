@@ -27,9 +27,11 @@ date = date - timedelta(days=1)
 date = str(date.month).zfill(2) + '/' + str(date.day).zfill(2) + '/' + str(date.year)
 print(date)
 print(LASTRECORD)
-os.environ["LASTRECORD"] = "Boo!"
-print(LASTRECORD)
 
+env_file = os.getenv('GITHUB_ENV')
+
+with open(env_file, "a") as myfile:
+    myfile.write("MY_VAR=MY_VALUE")
 
 # Let's load in the addresses we want to keep tabs on.
 #addys = requests.get('https://docs.google.com/spreadsheets/d/e/2PACX-1vSmhBBSJWwQSgegcqc8rZ6W5w_CT3XUPKPecLgSajw36_oOtM5ql7j0r-PbN0hDOSl6wAXH2EkNefE-/pub?output=tsv').text
