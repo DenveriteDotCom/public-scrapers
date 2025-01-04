@@ -31,7 +31,7 @@ print(LASTRECORD)
 env_file = os.getenv('GITHUB_ENV')
 
 with open(env_file, "a") as myfile:
-    myfile.write("LASTRECORD='YOOOO'")
+    myfile.write('NEWRECORD="YOOOO"')
 
 # Let's load in the addresses we want to keep tabs on.
 #addys = requests.get('https://docs.google.com/spreadsheets/d/e/2PACX-1vSmhBBSJWwQSgegcqc8rZ6W5w_CT3XUPKPecLgSajw36_oOtM5ql7j0r-PbN0hDOSl6wAXH2EkNefE-/pub?output=tsv').text
