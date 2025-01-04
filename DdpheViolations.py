@@ -30,7 +30,7 @@ print(LASTRECORD)
 
 with open('DdpheViolationsLatestEntry.txt', 'r') as file:
     last_entry = file.read().strip()
-with open('latest_entry.txt', 'w') as file:
+with open('DdpheViolationsLatestEntry.txt', 'w') as file:
         file.write("whazzuupp")
 
 # Let's load in the addresses we want to keep tabs on.
