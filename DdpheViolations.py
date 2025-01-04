@@ -88,7 +88,6 @@ count = 0
 for i in rows:
 	count += 1
 	rowID = i.find_all('td')[1].text.replace('\n',"")
-	print(count)
 	if (rowID == last_entry):
         	break
 	else:
@@ -98,7 +97,7 @@ for i in rows:
 		desc = i.find_all('td')[3].text.replace('\n',"")
 		addy = i.find_all('td')[4].text.replace('\n',"")
 		postThis = '{"text":":grimacing: *New DDPHE violation!*\n\n*<' + url +  '|' + addy + '>*\n' + desc + '\n\n"}'
-		#response = requests.post(SLACKURL, data=postThis, headers={'Content-type': 'application/json'})
+		response = requests.post(SLACKURL, data=postThis, headers={'Content-type': 'application/json'})
 		if (count == 10):
 			postThis = '{"text":"There may be more here today, so check the website!"}'
-			#response = requests.post(SLACKURL, data=postThis, headers={'Content-type': 'application/json'})
+			response = requests.post(SLACKURL, data=postThis, headers={'Content-type': 'application/json'})
