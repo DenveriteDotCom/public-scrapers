@@ -2,7 +2,6 @@ name: Scrape DDPHE Violations
 env:
   SLACKURL: ${{ secrets.slackURL }}
   CITYLOGIN: ${{ secrets.cityLogin }}
-  LASTRECORD: "2025-DDPHEAC-0000011"
 on:
   workflow_dispatch:
 jobs:
