@@ -93,7 +93,7 @@ for i in rows:
 	with open('DdpheViolationsLatestEntry.txt', 'w') as file:
 			file.write(rowID)
 	if (rowID == last_entry):
-        	return
+        	break
 	else:
 		desc = i.find_all('td')[3].text.replace('\n',"")
 		addy = i.find_all('td')[4].text.replace('\n',"")
