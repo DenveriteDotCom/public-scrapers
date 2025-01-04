@@ -16,4 +16,4 @@ jobs:
       - name: Run the script
         run: 
           python DdpheViolations.py
-          echo "LASTRECORD=LASTRECORD" >> $GITHUB_ENV
+          echo "LASTRECORD=$LASTRECORD" >> $LASTRECORD
