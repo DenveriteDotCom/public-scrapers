@@ -67,7 +67,7 @@ browser.find_element('xpath', '//*[@id="username"]').send_keys('kevinjbeaty')
 browser.find_element('xpath', '//*[@id="passwordRequired"]').send_keys(CITYLOGIN)
 time.sleep(timer)
 
-browser.find_element('xpath', '//*[@id="FirstAnchorInACAMainContent"]/app-login-screen/div/p-card/div/div/div/aca-login-panel/form/div[5]/accela-button-primary/div/button/span').click()
+browser.find_element('xpath','//*[@id="span_tab_2"]/table/tbody/tr/td[2]').click()
 time.sleep(10)
 
 browser.switch_to.parent_frame()
@@ -75,7 +75,7 @@ browser.find_element('xpath','//*[@id="span_tab_1"]/table/tbody/tr/td[2]/div/a')
 time.sleep(timer)
 
 select = Select(browser.find_element('xpath','//*[@id="ctl00_PlaceHolderMain_generalSearchForm_ddlGSPermitType"]'))
-select.select_by_visible_text('Large Development Review')
+select.select_by_visible_text('DDPHE Administrative Citation')
 time.sleep(1)
 browser.find_element('xpath','//*[@id="ctl00_PlaceHolderMain_btnNewSearch"]').click()
 
@@ -88,17 +88,20 @@ count = 0
 for i in rows:
 	count += 1
 	rowID = i.find_all('td')[1].text.replace('\n',"")
-	with open('DdpheViolationsLatestEntry.txt', 'w') as file:
-			file.write(rowID)
+	print(rowID)
 	if (rowID == last_entry):
         	break
 	else:
+		with open('DdpheViolationsLatestEntry.txt', 'w') as file:
+			file.write(rowID)
 		desc = i.find_all('td')[3].text.replace('\n',"")
 		addy = i.find_all('td')[4].text.replace('\n',"")
-		#postThis = '{"text":":grimacing: *New DDPHE violation!*\n\n*<' + url +  '|' + addy + '>*\n' + desc + '\n\n"}'
+		postThis = '{"text":":grimacing: *New DDPHE violation!*\n\n*<' + url +  '|' + addy + '>*\n' + desc + '\n\n"}'
+		print(postThis)
 		#response = requests.post(SLACKURL, data=postThis, headers={'Content-type': 'application/json'})
 	if (count == 10):
-		#postThis = '{"text":"There may be more here today, so check the website!"}'
+		postThis = '{"text":"There may be more here today, so check the website!"}'
+		print(postThis)
 		#response = requests.post(SLACKURL, data=postThis, headers={'Content-type': 'application/json'})
 		with open('DdpheViolationsLatestEntry.txt', 'w') as file:
 			file.write(rowID);
