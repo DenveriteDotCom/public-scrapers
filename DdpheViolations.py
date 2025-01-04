@@ -25,7 +25,6 @@ date = datetime.now()
 date = date - timedelta(days=1)
 date = str(date.month).zfill(2) + '/' + str(date.day).zfill(2) + '/' + str(date.year)
 print(date)
-print(LASTRECORD)
 
 with open('DdpheViolationsLatestEntry.txt', 'r') as file:
     last_entry = file.read().strip()
