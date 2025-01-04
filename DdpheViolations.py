@@ -67,11 +67,11 @@ browser.find_element('xpath', '//*[@id="username"]').send_keys('kevinjbeaty')
 browser.find_element('xpath', '//*[@id="passwordRequired"]').send_keys(CITYLOGIN)
 time.sleep(timer)
 
-browser.find_element('xpath','//*[@id="span_tab_2"]/table/tbody/tr/td[2]').click()
+browser.find_element('xpath', '//*[@id="FirstAnchorInACAMainContent"]/app-login-screen/div/p-card/div/div/div/aca-login-panel/form/div[5]/accela-button-primary/div/button/span').click()
 time.sleep(10)
 
 browser.switch_to.parent_frame()
-browser.find_element('xpath','//*[@id="span_tab_1"]/table/tbody/tr/td[2]/div/a').click()
+browser.find_element('xpath','//*[@id="span_tab_2"]/table/tbody/tr/td[2]/div/a').click()
 time.sleep(timer)
 
 select = Select(browser.find_element('xpath','//*[@id="ctl00_PlaceHolderMain_generalSearchForm_ddlGSPermitType"]'))
