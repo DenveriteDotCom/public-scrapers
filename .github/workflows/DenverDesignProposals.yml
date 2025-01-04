@@ -15,10 +15,18 @@ jobs:
       - name: Run design proposals
         run: python DenverDesignProposals.py
       - name: Run demolitions
-        run: DemolitionEligibility.py
+        run: python DemolitionEligibility.py
       - name: Run large dev reviews
-        run: LargeDevelopmentReviews.py
+        run: python LargeDevelopmentReviews.py
       - name: Run complaints
-        run: BuildingComplaints.py
+        run: python BuildingComplaints.py
       - name: Run violations
-        run: DdpheViolations.py
+        run: python DdpheViolations.py
+      - name: Commit updated file
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add DdpheViolationsLatestEntry.txt
+          git commit -m "Update latest entry"
+          git push
+        continue-on-error: true
