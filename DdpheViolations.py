@@ -90,10 +90,10 @@ count = 0
 for i in rows:
 	count += 1
 	rowID = i.find_all('td')[1].text.replace('\n',"")
-	if (rowID == last_entry):
-        	with open('DdpheViolationsLatestEntry.txt', 'w') as file:
+	with open('DdpheViolationsLatestEntry.txt', 'w') as file:
 			file.write(rowID)
-		return
+	if (rowID == last_entry):
+        	return
 	else:
 		desc = i.find_all('td')[3].text.replace('\n',"")
 		addy = i.find_all('td')[4].text.replace('\n',"")
