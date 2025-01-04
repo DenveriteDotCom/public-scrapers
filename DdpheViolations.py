@@ -19,7 +19,6 @@ import re
 
 SLACKURL = os.environ['SLACKURL']
 CITYLOGIN = os.environ['CITYLOGIN']
-LASTRECORD = os.environ['LASTRECORD']
 
 # What day is today? This needs a subtraction if it's posted after 18:00 MST.
 date = datetime.now()
