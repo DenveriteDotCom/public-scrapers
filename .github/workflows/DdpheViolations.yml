@@ -14,4 +14,6 @@ jobs:
       - name: Install dependencies
         run: python -m pip install beautifulsoup4 webdriver_manager selenium PyVirtualDisplay
       - name: Run the script
-        run: python DdpheViolations.py
+        run: 
+          python DdpheViolations.py
+          echo "LASTRECORD=LASTRECORD" >> $GITHUB_ENV
