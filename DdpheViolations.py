@@ -92,8 +92,9 @@ for i in rows:
 	if (rowID == last_entry):
         	break
 	else:
-		with open('DdpheViolationsLatestEntry.txt', 'w') as file:
-			file.write(rowID)
+		if (count == 1):
+			with open('DdpheViolationsLatestEntry.txt', 'w') as file:
+				file.write(rowID)
 		desc = i.find_all('td')[3].text.replace('\n',"")
 		addy = i.find_all('td')[4].text.replace('\n',"")
 		postThis = '{"text":":grimacing: *New DDPHE violation!*\n\n*<' + url +  '|' + addy + '>*\n' + desc + '\n\n"}'
