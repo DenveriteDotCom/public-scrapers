@@ -12,5 +12,13 @@ jobs:
         uses: actions/checkout@v2
       - name: Install dependencies
         run: python -m pip install beautifulsoup4 webdriver_manager selenium
-      - name: Run the script
+      - name: Run design proposals
         run: python DenverDesignProposals.py
+      - name: Run demolitions
+        run: DemolitionEligibility.py
+      - name: Run large dev reviews
+        run: LargeDevelopmentReviews.py
+      - name: Run complaints
+        run: BuildingComplaints.py
+      - name: Run violations
+        run: DdpheViolations.py
