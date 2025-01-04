@@ -30,8 +30,6 @@ print(LASTRECORD)
 
 with open('DdpheViolationsLatestEntry.txt', 'r') as file:
     last_entry = file.read().strip()
-with open('DdpheViolationsLatestEntry.txt', 'w') as file:
-        file.write("whazzuupp")
 
 # Let's load in the addresses we want to keep tabs on.
 #addys = requests.get('https://docs.google.com/spreadsheets/d/e/2PACX-1vSmhBBSJWwQSgegcqc8rZ6W5w_CT3XUPKPecLgSajw36_oOtM5ql7j0r-PbN0hDOSl6wAXH2EkNefE-/pub?output=tsv').text
@@ -43,8 +41,6 @@ with open('DdpheViolationsLatestEntry.txt', 'w') as file:
 
 
 
-
-'''
 
 # Here's the Selenium setup.
 
@@ -90,26 +86,21 @@ time.sleep(10)
 html = browser.find_element('xpath','//*[@id="ctl00_PlaceHolderMain_dgvPermitList_gdvPermitList"]/tbody').get_attribute('innerHTML')
 soup = BeautifulSoup(html, 'html.parser')
 rows = soup.find_all('tr')[3:-2]
-records = []
+count = 0
 for i in rows:
-	if i.find_all('td')[2].text.replace('\n',"") == date:
-        	records.append(i.find_all('td')[3].find('a')['href'])
-if (len(records) > 0):
-	for i in records:
-		url = 'https://aca-prod.accela.com/' + i
-		browser.get(url)
-		time.sleep(10)
-		soup = BeautifulSoup(browser.page_source, 'html.parser')
-		#projectId = soup.find(string=re.compile('Project Master Number')).next.next.next.text.replace('\n','')
-		try:
-			addy = soup.find('div',{'id':'divWorkLocationInfo'}).text.replace('\n','').replace('\xa0','').replace('*','').encode('latin-1', 'ignore').decode('utf-8')
-		except:
-			addy = ''
-		try:
-			desc = soup.find(string=re.compile('Project Description')).next.next.next.text.replace('\n','').encode('latin-1', 'ignore').decode('utf-8')
-		except:
-			desc = ''
-		postThis = '{"text":":city_sunrise: *New large development review!*\n\n*<' + url +  '|' + addy + '>*\n' + desc + '\n\n"}'
+	count += 1
+	rowID = i.find_all('td')[1].text.replace('\n',"")
+	if rowID == last_entry:
+        	with open('DdpheViolationsLatestEntry.txt', 'w') as file:
+			file.write(rowID);
+		return
+	else:
+		desc = i.find_all('td')[3].text.replace('\n',"")
+		addy = i.find_all('td')[4].text.replace('\n',"")
+		postThis = '{"text":":grimacing: *New DDPHE violation!*\n\n*<' + url +  '|' + addy + '>*\n' + desc + '\n\n"}'
 		response = requests.post(SLACKURL, data=postThis, headers={'Content-type': 'application/json'})
-
-'''
+	if (count == 10):
+		postThis = '{"text":"There may be more here today, so check the website!"}'
+		response = requests.post(SLACKURL, data=postThis, headers={'Content-type': 'application/json'})
+		with open('DdpheViolationsLatestEntry.txt', 'w') as file:
+			file.write(rowID);
