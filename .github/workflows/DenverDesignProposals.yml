@@ -14,19 +14,4 @@ jobs:
         run: python -m pip install beautifulsoup4 webdriver_manager selenium
       - name: Run design proposals
         run: python DenverDesignProposals.py
-      - name: Run demolitions
-        run: python DemolitionEligibility.py
-      - name: Run large dev reviews
-        run: python LargeDevelopmentReviews.py
-      - name: Run complaints
-        run: python BuildingComplaints.py
-      - name: Run violations
-        run: python DdpheViolations.py
-      - name: Commit updated file
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add DdpheViolationsLatestEntry.txt
-          git commit -m "Update latest entry"
-          git push
-        continue-on-error: true
+     
