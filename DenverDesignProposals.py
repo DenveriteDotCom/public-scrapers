@@ -77,7 +77,7 @@ select.select_by_visible_text('Formal Site Development Plan')
 time.sleep(1)
 browser.find_element('xpath','//*[@id="ctl00_PlaceHolderMain_btnNewSearch"]').click()
 
-time.sleep(15)
+time.sleep(20)
 
 html = browser.find_element('xpath','//*[@id="ctl00_PlaceHolderMain_dgvPermitList_gdvPermitList"]/tbody').get_attribute('innerHTML')
 soup = BeautifulSoup(html, 'html.parser')
@@ -115,12 +115,10 @@ if (len(records) > 0):
 			desc = ''
 		if units < 49:
 			postThis = '{"text":":office: *New formal site development plan!*\n\n*<' + url +  '|' + addy + '>*\nUnits:' + str(units) + '\n\n' + use1 + '\n' + use2 + '\n' + desc + '\n\n"}'
-			print(postThis)
-			#response = requests.post(SLACKURL, data=postThis, headers={'Content-type': 'application/json'})
+			response = requests.post(SLACKURL, data=postThis, headers={'Content-type': 'application/json'})
 		else:
 			postThis = '{"text":":office: *New formal site development plan!*\nATTN <!here>, this one has more than 50 units!\n\n*<' + url +  '|' + addy + '>*\nUnits:' + str(units) + '\n\n' + use1 + '\n' + use2 + '\n' + desc + '\n\n"}'
-			print(postThis)
-			#response = requests.post(SLACKURL, data=postThis, headers={'Content-type': 'application/json'})
+			response = requests.post(SLACKURL, data=postThis, headers={'Content-type': 'application/json'})
 if (len(records) > 10):
 	postThis = '{"text":"There might have been more than 10 entries today, but I didn not check for more :grimacing: sorry. KB will update the code if this keeps being A Thing."}'
-	#response = requests.post(SLACKURL, data=postThis, headers={'Content-type': 'application/json'})
+	response = requests.post(SLACKURL, data=postThis, headers={'Content-type': 'application/json'})
