@@ -77,7 +77,7 @@ select.select_by_visible_text('Landmark Certificate of Demolition Eligibility')
 time.sleep(1)
 browser.find_element('xpath','//*[@id="ctl00_PlaceHolderMain_btnNewSearch"]').click()
 
-time.sleep(15)
+time.sleep(20)
 
 html = browser.find_element('xpath','//*[@id="ctl00_PlaceHolderMain_dgvPermitList_gdvPermitList"]/tbody').get_attribute('innerHTML')
 soup = BeautifulSoup(html, 'html.parser')
