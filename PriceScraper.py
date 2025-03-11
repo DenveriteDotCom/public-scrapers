@@ -68,6 +68,4 @@ url = "https://www.grubhub.com/restaurant/good-times-burgers--frozen-custard-102
 browser.get(url)
 time.sleep(timer)
 soup = BeautifulSoup(browser.page_source, 'html.parser')
-loadItIn([date, "Good Times", "Deluxe Cheesburger", soup.find(string="Deluxe Cheeseburger").parent.parent.parent.parent.parent.find('span',{'itemprop':'price'}).text])
-loadItIn([date, "Good Times", "Guacamole Bacon Burger", soup.find(string="Guacamole Bacon Burger").parent.parent.parent.parent.parent.find('span',{'itemprop':'price'}).text])
-loadItIn([date, "Good Times", "Crispy Chicken Sandwich", soup.find(string="Crispy Chicken Sandwich").parent.parent.parent.parent.parent.find('span',{'itemprop':'price'}).text])
+loadItIn([date, "Good Times", "Deluxe Cheesburger"])
