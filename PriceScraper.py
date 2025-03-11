@@ -47,7 +47,7 @@ creds = {
   "type": "service_account",
   "project_id": "airbot-291606",
   "private_key_id": PRIVATEIDKEY,
-  "private_key": PRIVATEKEY,
+  "private_key": "-----BEGIN PRIVATE KEY-----\n" + PRIVATEKEY + "\n-----END PRIVATE KEY-----\n",
   "client_email": "dailyairbot@airbot-291606.iam.gserviceaccount.com",
   "client_id": "105388363485733269650",
   "auth_uri": "https://accounts.google.com/o/oauth2/auth",
