@@ -1,0 +1,17 @@
+name: Scrape Prices
+env:
+  PRICEKEY: ${{ secrets.PRICEKEY }}
+  PRIVATEKEY: ${{ secrets.PRIVATEKEY }}
+  PRIVATEIDKEY: ${{ secrets.PRIVATEIDKEY }}
+on:
+  workflow_dispatch:
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out this repo
+        uses: actions/checkout@v2
+      - name: Install dependencies
+        run: python -m pip install webdriver-manager selenium PyVirtualDisplay beautifulsoup4 gspread
+      - name: Run the script
+        run: python PriceScraper.py
