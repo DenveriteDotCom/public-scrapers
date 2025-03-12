@@ -38,7 +38,7 @@ quicktimer = 5
 user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36'
 chrome_options = Options()
 options = [
-    "--start-maximized",
+    "--window-size=1920,1200",
     "--ignore-certificate-errors",
     f'user-agent={user_agent}'
 ]
