@@ -3,7 +3,7 @@ import gspread
 from bs4 import BeautifulSoup
 
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
+#from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
@@ -32,6 +32,7 @@ date = str(date.month).zfill(2) + '/' + str(date.day).zfill(2) + '/' + str(date.
 
 timer = 10
 quicktimer = 5
+'''
 user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36'
 chrome_options = Options()
 options = [
@@ -44,7 +45,10 @@ options = [
 for option in options:
     chrome_options.add_argument(option)
 browser = webdriver.Chrome(options=chrome_options)
-
+'''
+profile = webdriver.FirefoxProfile()
+profile.set_preference("general.useragent.override", "Denverite")
+browser = webdriver.Firefox(profile)
 
 # And the Gspread setup, to append data to a Google sheet.
 
