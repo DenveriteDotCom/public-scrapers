@@ -12,6 +12,6 @@ jobs:
       - name: Check out this repo
         uses: actions/checkout@v2
       - name: Install dependencies
-        run: python -m pip install webdriver-manager selenium PyVirtualDisplay beautifulsoup4 gspread
+        run: python -m pip install beautifulsoup4 gspread webdriver-manager selenium PyVirtualDisplay
       - name: Run the script
         run: python PriceScraper.py
