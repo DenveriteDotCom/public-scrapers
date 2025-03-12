@@ -34,7 +34,6 @@ timer = 10
 quicktimer = 5
 chrome_options = Options()
 options = [
-    "--headless",
     "--window-size=1920,1200",
     "--ignore-certificate-errors"
 ]
@@ -168,6 +167,14 @@ browser.get(url)
 time.sleep(timer)
 soup = BeautifulSoup(browser.page_source, 'html.parser')
 loadItIn([date, "King Soopers", "Yellow California Peaches", soup.find("span",{"id":"ProductDetails-sellBy-weight"}).text])
+
+# Soops / ball cups
+
+url = "https://www.kingsoopers.com/p/ball-packaging-20-oz-aluminum-cold-drink-cup/0075821897572?fulfillment=PICKUP&searchType=default_search"
+browser.get(url)
+time.sleep(timer)
+soup = BeautifulSoup(browser.page_source, 'html.parser')
+soup.find("data",{"typeof":"Price"}).text
 
 # Zorba's
 
