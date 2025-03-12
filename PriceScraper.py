@@ -30,11 +30,10 @@ date = str(date.month).zfill(2) + '/' + str(date.day).zfill(2) + '/' + str(date.
 
 # Here's the Selenium setup.
 
-timer = 6
-quicktimer = 3
+timer = 10
+quicktimer = 5
 chrome_options = Options()
 options = [
-    "--headless",
     "--window-size=1920,1200",
     "--ignore-certificate-errors"
 ]
