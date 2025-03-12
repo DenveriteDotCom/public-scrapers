@@ -65,17 +65,6 @@ def loadItIn(data):
 
 
 
-# Zorba's
-
-url = "https://order.toasttab.com/online/chef-zorbas-restaurant"
-browser.get(url)
-time.sleep(timer)
-soup = BeautifulSoup(browser.page_source, 'html.parser')
-
-loadItIn([date, "Zorba's", "Just Eggs", soup.find(string="Just Eggs").parent.parent.parent.parent.parent.find('span',{'class':'price'}).text])
-loadItIn([date, "Zorba's", "Steak & Eggs", soup.find(string="Steak & Eggs").parent.parent.parent.parent.parent.find('span',{'class':'price'}).text])
-loadItIn([date, "Zorba's", "2 Eggs & Gyro", soup.find(string="2 Eggs & Gyro").parent.parent.parent.parent.parent.find('span',{'class':'price'}).text])
-time.sleep(quicktimer)
 
 # Phillips 66
 
