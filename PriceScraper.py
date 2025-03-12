@@ -34,8 +34,10 @@ timer = 10
 quicktimer = 5
 chrome_options = Options()
 options = [
+    "--headless",
     "--window-size=1920,1200",
-    "--ignore-certificate-errors"
+    "--ignore-certificate-errors",
+    "user-agent=Denverite"
 ]
 for option in options:
     chrome_options.add_argument(option)
