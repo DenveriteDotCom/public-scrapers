@@ -38,10 +38,8 @@ quicktimer = 5
 user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36'
 chrome_options = Options()
 options = [
-    "--headless",
     "--start-maximized",
     "--ignore-certificate-errors",
-    "--disable-gpu",
     f'user-agent={user_agent}'
 ]
 for option in options:
@@ -70,26 +68,24 @@ def loadItIn(data):
   sheetdata.append_row(data)  
 
 # Soops / eggs
-try:
-    url = "https://www.kingsoopers.com/p/kroger-cage-free-extra-large-grade-aa-white-eggs/0001111009039?fulfillment=PICKUP&searchType=default_search"
-    browser.get(url)
-    time.sleep(20)
-    soup = BeautifulSoup(browser.page_source, 'html.parser')
-    time.sleep(2)
-    loadItIn([date, "King Soopers", "12 Extra Large AA Eggs", soup.find("data",{"typeof":"Price"}).text])
-except:
-    pass
+
+url = "https://www.kingsoopers.com/p/kroger-cage-free-extra-large-grade-aa-white-eggs/0001111009039?fulfillment=PICKUP&searchType=default_search"
+browser.get(url)
+time.sleep(20)
+soup = BeautifulSoup(browser.page_source, 'html.parser')
+time.sleep(2)
+loadItIn([date, "King Soopers", "12 Extra Large AA Eggs", soup.find("data",{"typeof":"Price"}).text])
+
 
 # Soops / avocado
-try:
-    url = "https://www.kingsoopers.com/p/large-avocado/0000000004225?fulfillment=PICKUP&searchType=suggestions"
-    browser.get(url)
-    time.sleep(20)
-    soup = BeautifulSoup(browser.page_source, 'html.parser')
-    time.sleep(2)
-    loadItIn([date, "King Soopers", "Large Avocados", soup.find("data",{"typeof":"Price"}).text])
-except:
-    pass
+
+url = "https://www.kingsoopers.com/p/large-avocado/0000000004225?fulfillment=PICKUP&searchType=suggestions"
+browser.get(url)
+time.sleep(20)
+soup = BeautifulSoup(browser.page_source, 'html.parser')
+time.sleep(2)
+loadItIn([date, "King Soopers", "Large Avocados", soup.find("data",{"typeof":"Price"}).text])
+
 
 # Soops / ball cups
 
