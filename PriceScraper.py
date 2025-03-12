@@ -92,15 +92,22 @@ except:
     pass
 
 # Soops / ball cups
-try:
-    url = "https://www.kingsoopers.com/p/ball-packaging-20-oz-aluminum-cold-drink-cup/0075821897572?fulfillment=PICKUP&searchType=default_search"
-    browser.get(url)
-    time.sleep(20)
-    soup = BeautifulSoup(browser.page_source, 'html.parser')
-    time.sleep(2)
-    soup.find("data",{"typeof":"Price"}).text
-except:
-    pass
+
+url = "https://www.kingsoopers.com/p/ball-packaging-20-oz-aluminum-cold-drink-cup/0075821897572?fulfillment=PICKUP&searchType=default_search"
+browser.get(url)
+time.sleep(20)
+soup = BeautifulSoup(browser.page_source, 'html.parser')
+time.sleep(2)
+loadItIn([date, "King Soopers", "18 20oz Ball Cups", soup.find("data",{"typeof":"Price"}).text])
+
+# Soops / solo cups
+
+url = "https://www.kingsoopers.com/p/solo-squared-plastic-cups/0004116560010?fulfillment=PICKUP&searchType=suggestions"
+browser.get(url)
+time.sleep(20)
+soup = BeautifulSoup(browser.page_source, 'html.parser')
+time.sleep(2)
+loadItIn([date, "King Soopers", "30 Solo Cups", soup.find("data",{"typeof":"Price"}).text])
 
 # Phillips 66
 
