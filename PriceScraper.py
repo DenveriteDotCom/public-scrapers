@@ -34,7 +34,6 @@ timer = 10
 quicktimer = 5
 user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36'
 chrome_options = Options()
-chrome_options.add_argument(f'user-agent={user_agent}')
 options = [
     "--headless",
     "--window-size=1920,1200",
@@ -42,6 +41,7 @@ options = [
 ]
 for option in options:
     chrome_options.add_argument(option)
+chrome_options.add_argument(f'user-agent={user_agent}')
 browser = webdriver.Chrome(options=chrome_options)
 
 
