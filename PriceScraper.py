@@ -38,10 +38,12 @@ options = [
     "--headless",
     "--window-size=1920,1200",
     "--ignore-certificate-errors",
+    "--disable-gpu",
+    f'--proxy-server={None}',
+    f'user-agent={user_agent}'
 ]
 for option in options:
     chrome_options.add_argument(option)
-chrome_options.add_argument(f'user-agent={user_agent}')
 browser = webdriver.Chrome(options=chrome_options)
 
 
@@ -75,6 +77,14 @@ soup = BeautifulSoup(browser.page_source, 'html.parser')
 
 loadItIn([date, "Phillips 66", "Regular", soup.find(string="Regular").parent.parent.parent.next_sibling.text.split("\xa0")[0]])
 time.sleep(quicktimer)
+
+# Soops / eggs
+
+url = "https://www.kingsoopers.com/p/kroger-cage-free-extra-large-grade-aa-white-eggs/0001111009039?fulfillment=PICKUP&searchType=default_search"
+browser.get(url)
+time.sleep(timer)
+soup = BeautifulSoup(browser.page_source, 'html.parser')
+loadItIn([date, "King Soopers", "12 Extra Large AA Eggs", soup.find("data",{"typeof":"Price"}).text])
 
 # Mayfair Liquor / Modelo
 
@@ -146,14 +156,6 @@ soup = BeautifulSoup(browser.page_source, 'html.parser')
 loadItIn([date, "Tokyo Premium", "Matcha Cream", soup.find("p",{"title":"Matcha Cream"}).parent.parent.parent.find('div',{'class':'item__price-badges-order-again'}).text.replace('\n','').replace('\t','').replace(' ','')])
 loadItIn([date, "Tokyo Premium", "Red Bean Donut", soup.find("p",{"title":"Red Bean Donut"}).parent.parent.parent.find('div',{'class':'item__price-badges-order-again'}).text.replace('\n','').replace('\t','').replace(' ','')])
 loadItIn([date, "Tokyo Premium", "Beef Curry", soup.find("p",{"title":"Beef Curry"}).parent.parent.parent.find('div',{'class':'item__price-badges-order-again'}).text.replace('\n','').replace('\t','').replace(' ','')])
-
-# Soops / eggs
-
-url = "https://www.kingsoopers.com/p/kroger-cage-free-extra-large-grade-aa-white-eggs/0001111009039?fulfillment=PICKUP&searchType=default_search"
-browser.get(url)
-time.sleep(timer)
-soup = BeautifulSoup(browser.page_source, 'html.parser')
-loadItIn([date, "King Soopers", "12 Extra Large AA Eggs", soup.find("data",{"typeof":"Price"}).text])
 
 # Soops / avocado
 
