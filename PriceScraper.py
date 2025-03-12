@@ -67,6 +67,30 @@ def loadItIn(data):
   sheetdata = gsheet.get_worksheet(0)
   sheetdata.append_row(data)  
 
+# Soops / eggs
+
+url = "https://www.kingsoopers.com/p/kroger-cage-free-extra-large-grade-aa-white-eggs/0001111009039?fulfillment=PICKUP&searchType=default_search"
+browser.get(url)
+time.sleep(timer)
+soup = BeautifulSoup(browser.page_source, 'html.parser')
+loadItIn([date, "King Soopers", "12 Extra Large AA Eggs", soup.find("data",{"typeof":"Price"}).text])
+
+# Soops / avocado
+
+url = "https://www.kingsoopers.com/p/large-avocado/0000000004225?fulfillment=PICKUP&searchType=suggestions"
+browser.get(url)
+time.sleep(timer)
+soup = BeautifulSoup(browser.page_source, 'html.parser')
+loadItIn([date, "King Soopers", "Large Avocados", soup.find("data",{"typeof":"Price"}).text])
+
+# Soops / ball cups
+
+url = "https://www.kingsoopers.com/p/ball-packaging-20-oz-aluminum-cold-drink-cup/0075821897572?fulfillment=PICKUP&searchType=default_search"
+browser.get(url)
+time.sleep(timer)
+soup = BeautifulSoup(browser.page_source, 'html.parser')
+soup.find("data",{"typeof":"Price"}).text
+
 # Phillips 66
 
 url = "https://www.gasbuddy.com/station/7098"
@@ -76,14 +100,6 @@ soup = BeautifulSoup(browser.page_source, 'html.parser')
 
 loadItIn([date, "Phillips 66", "Regular", soup.find(string="Regular").parent.parent.parent.next_sibling.text.split("\xa0")[0]])
 time.sleep(quicktimer)
-
-# Soops / eggs
-
-url = "https://www.kingsoopers.com/p/kroger-cage-free-extra-large-grade-aa-white-eggs/0001111009039?fulfillment=PICKUP&searchType=default_search"
-browser.get(url)
-time.sleep(timer)
-soup = BeautifulSoup(browser.page_source, 'html.parser')
-loadItIn([date, "King Soopers", "12 Extra Large AA Eggs", soup.find("data",{"typeof":"Price"}).text])
 
 # Mayfair Liquor / Modelo
 
@@ -155,30 +171,6 @@ soup = BeautifulSoup(browser.page_source, 'html.parser')
 loadItIn([date, "Tokyo Premium", "Matcha Cream", soup.find("p",{"title":"Matcha Cream"}).parent.parent.parent.find('div',{'class':'item__price-badges-order-again'}).text.replace('\n','').replace('\t','').replace(' ','')])
 loadItIn([date, "Tokyo Premium", "Red Bean Donut", soup.find("p",{"title":"Red Bean Donut"}).parent.parent.parent.find('div',{'class':'item__price-badges-order-again'}).text.replace('\n','').replace('\t','').replace(' ','')])
 loadItIn([date, "Tokyo Premium", "Beef Curry", soup.find("p",{"title":"Beef Curry"}).parent.parent.parent.find('div',{'class':'item__price-badges-order-again'}).text.replace('\n','').replace('\t','').replace(' ','')])
-
-# Soops / avocado
-
-url = "https://www.kingsoopers.com/p/large-avocado/0000000004225?fulfillment=PICKUP&searchType=suggestions"
-browser.get(url)
-time.sleep(timer)
-soup = BeautifulSoup(browser.page_source, 'html.parser')
-loadItIn([date, "King Soopers", "Large Avocados", soup.find("data",{"typeof":"Price"}).text])
-
-# Soops / peaches
-
-url = "https://www.kingsoopers.com/p/fresh-california-yellow-peach-each/0000000004038?fulfillment=PICKUP&searchType=suggestions"
-browser.get(url)
-time.sleep(timer)
-soup = BeautifulSoup(browser.page_source, 'html.parser')
-loadItIn([date, "King Soopers", "Yellow California Peaches", soup.find("span",{"id":"ProductDetails-sellBy-weight"}).text])
-
-# Soops / ball cups
-
-url = "https://www.kingsoopers.com/p/ball-packaging-20-oz-aluminum-cold-drink-cup/0075821897572?fulfillment=PICKUP&searchType=default_search"
-browser.get(url)
-time.sleep(timer)
-soup = BeautifulSoup(browser.page_source, 'html.parser')
-soup.find("data",{"typeof":"Price"}).text
 
 # Zorba's
 
