@@ -195,6 +195,8 @@ loadItIn([date, "Zorba's", "Steak & Eggs", soup.find(string="Steak & Eggs").pare
 loadItIn([date, "Zorba's", "2 Eggs & Gyro", soup.find(string="2 Eggs & Gyro").parent.parent.parent.parent.parent.find('span',{'class':'price'}).text])
 time.sleep(quicktimer)
 
+'''
+
 # Good Times
 
 url = "https://www.grubhub.com/restaurant/good-times-burgers--frozen-custard-102-808-e-colfax-ave-denver/2061835"
@@ -210,3 +212,4 @@ time.sleep(quicktimer)
 loadItIn([date, "Good Times", "Crispy Chicken Sandwich", soup.find(string="Crispy Chicken Sandwich").parent.parent.parent.parent.parent.find('span',{'itemprop':'price'}).text])
 time.sleep(quicktimer)
 
+'''
