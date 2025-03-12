@@ -34,6 +34,7 @@ timer = 10
 quicktimer = 5
 chrome_options = Options()
 options = [
+    "--headless",
     "--window-size=1920,1200",
     "--ignore-certificate-errors"
 ]
