@@ -68,31 +68,37 @@ def loadItIn(data):
   sheetdata.append_row(data)  
 
 # Soops / eggs
-
-url = "https://www.kingsoopers.com/p/kroger-cage-free-extra-large-grade-aa-white-eggs/0001111009039?fulfillment=PICKUP&searchType=default_search"
-browser.get(url)
-time.sleep(20)
-soup = BeautifulSoup(browser.page_source, 'html.parser')
-time.sleep(2)
-loadItIn([date, "King Soopers", "12 Extra Large AA Eggs", soup.find("data",{"typeof":"Price"}).text])
+try:
+    url = "https://www.kingsoopers.com/p/kroger-cage-free-extra-large-grade-aa-white-eggs/0001111009039?fulfillment=PICKUP&searchType=default_search"
+    browser.get(url)
+    time.sleep(20)
+    soup = BeautifulSoup(browser.page_source, 'html.parser')
+    time.sleep(2)
+    loadItIn([date, "King Soopers", "12 Extra Large AA Eggs", soup.find("data",{"typeof":"Price"}).text])
+except:
+    pass
 
 # Soops / avocado
-
-url = "https://www.kingsoopers.com/p/large-avocado/0000000004225?fulfillment=PICKUP&searchType=suggestions"
-browser.get(url)
-time.sleep(20)
-soup = BeautifulSoup(browser.page_source, 'html.parser')
-time.sleep(2)
-loadItIn([date, "King Soopers", "Large Avocados", soup.find("data",{"typeof":"Price"}).text])
+try:
+    url = "https://www.kingsoopers.com/p/large-avocado/0000000004225?fulfillment=PICKUP&searchType=suggestions"
+    browser.get(url)
+    time.sleep(20)
+    soup = BeautifulSoup(browser.page_source, 'html.parser')
+    time.sleep(2)
+    loadItIn([date, "King Soopers", "Large Avocados", soup.find("data",{"typeof":"Price"}).text])
+except:
+    pass
 
 # Soops / ball cups
-
-url = "https://www.kingsoopers.com/p/ball-packaging-20-oz-aluminum-cold-drink-cup/0075821897572?fulfillment=PICKUP&searchType=default_search"
-browser.get(url)
-time.sleep(20)
-soup = BeautifulSoup(browser.page_source, 'html.parser')
-time.sleep(2)
-soup.find("data",{"typeof":"Price"}).text
+try:
+    url = "https://www.kingsoopers.com/p/ball-packaging-20-oz-aluminum-cold-drink-cup/0075821897572?fulfillment=PICKUP&searchType=default_search"
+    browser.get(url)
+    time.sleep(20)
+    soup = BeautifulSoup(browser.page_source, 'html.parser')
+    time.sleep(2)
+    soup.find("data",{"typeof":"Price"}).text
+except:
+    pass
 
 # Phillips 66
 
