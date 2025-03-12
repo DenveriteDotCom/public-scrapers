@@ -68,13 +68,16 @@ def loadItIn(data):
   sheetdata.append_row(data)  
 
 # Soops / eggs
-
-url = "https://www.kingsoopers.com/p/kroger-cage-free-extra-large-grade-aa-white-eggs/0001111009039?fulfillment=PICKUP&searchType=default_search"
-browser.get(url)
-time.sleep(timer)
-soup = BeautifulSoup(browser.page_source, 'html.parser')
-time.sleep(2)
-loadItIn([date, "King Soopers", "12 Extra Large AA Eggs", soup.find("data",{"typeof":"Price"}).text])
+try:
+    url = "https://www.kingsoopers.com/p/kroger-cage-free-extra-large-grade-aa-white-eggs/0001111009039?fulfillment=PICKUP&searchType=default_search"
+    browser.get(url)
+    time.sleep(timer)
+    soup = BeautifulSoup(browser.page_source, 'html.parser')
+    time.sleep(2)
+    loadItIn([date, "King Soopers", "12 Extra Large AA Eggs", soup.find("data",{"typeof":"Price"}).text])
+except:
+    print(soup)
+    return
 
 # Soops / avocado
 
