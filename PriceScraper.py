@@ -77,7 +77,6 @@ try:
     loadItIn([date, "King Soopers", "12 Extra Large AA Eggs", soup.find("data",{"typeof":"Price"}).text])
 except:
     print(soup)
-    return
 
 # Soops / avocado
 
