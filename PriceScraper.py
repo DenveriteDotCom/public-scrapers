@@ -39,7 +39,6 @@ options = [
     "--window-size=1920,1200",
     "--ignore-certificate-errors",
     "--disable-gpu",
-    f'--proxy-server={None}',
     f'user-agent={user_agent}'
 ]
 for option in options:
