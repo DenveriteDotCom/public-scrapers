@@ -62,20 +62,7 @@ def loadItIn(data):
   sheetdata = gsheet.get_worksheet(0)
   sheetdata.append_row(data)  
 
-# Good Times
 
-url = "https://www.grubhub.com/restaurant/good-times-burgers--frozen-custard-102-808-e-colfax-ave-denver/2061835"
-browser.get(url)
-time.sleep(timer)
-browser.find_element('xpath','/html/body/ghs-site-container/span/div/div[3]/div[1]/span/div/ghs-router-outlet/span/ghs-restaurant-provider/div/div[1]/div/main/div[4]/div/div[1]/div[1]/div/span/ul/li[3]/span').click()
-soup = BeautifulSoup(browser.page_source, 'html.parser')
-time.sleep(quicktimer)
-loadItIn([date, "Good Times", "Deluxe Cheesburger", soup.find(string="Deluxe Cheeseburger").parent.parent.parent.parent.parent.find('span',{'itemprop':'price'}).text])
-loadItIn([date, "Good Times", "Guacamole Bacon Burger", soup.find(string="Guacamole Bacon Burger").parent.parent.parent.parent.parent.find('span',{'itemprop':'price'}).text])
-browser.find_element('xpath','/html/body/ghs-site-container/span/div/div[3]/div[1]/span/div/ghs-router-outlet/span/ghs-restaurant-provider/div/div[1]/div/main/div[4]/div/div[1]/div[1]/div/span/ul/li[4]/span').click()
-time.sleep(quicktimer)
-loadItIn([date, "Good Times", "Crispy Chicken Sandwich", soup.find(string="Crispy Chicken Sandwich").parent.parent.parent.parent.parent.find('span',{'itemprop':'price'}).text])
-time.sleep(quicktimer)
 
 # Zorba's
 
