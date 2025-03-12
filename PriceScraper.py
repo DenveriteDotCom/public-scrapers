@@ -16,6 +16,8 @@ import json
 import os
 import re
 
+os.environ["DISPLAY"] = ":99"
+
 PRICEKEY = os.environ['PRICEKEY']
 PRIVATEKEY = os.environ['PRIVATEKEY']
 PRIVATEIDKEY = os.environ['PRIVATEIDKEY']
@@ -37,7 +39,7 @@ user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTM
 chrome_options = Options()
 options = [
     "--headless",
-    "--window-size=1920,1200",
+    "--start-maximized",
     "--ignore-certificate-errors",
     "--disable-gpu",
     f'user-agent={user_agent}'
