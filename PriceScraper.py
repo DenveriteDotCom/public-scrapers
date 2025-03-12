@@ -64,9 +64,6 @@ def loadItIn(data):
   sheetdata = gsheet.get_worksheet(0)
   sheetdata.append_row(data)  
 
-
-
-
 # Phillips 66
 
 url = "https://www.gasbuddy.com/station/7098"
@@ -138,6 +135,7 @@ loadItIn([date, "Mayfair Liquor", "Station 26 Tangerine Cream 6 Cans", soup.find
 time.sleep(quicktimer)
 
 # Tokyo Premium
+
 url = "https://my-site-100105-109931.square.site"
 browser.get(url)
 time.sleep(timer)
@@ -146,3 +144,54 @@ soup = BeautifulSoup(browser.page_source, 'html.parser')
 loadItIn([date, "Tokyo Premium", "Matcha Cream", soup.find("p",{"title":"Matcha Cream"}).parent.parent.parent.find('div',{'class':'item__price-badges-order-again'}).text.replace('\n','').replace('\t','').replace(' ','')])
 loadItIn([date, "Tokyo Premium", "Red Bean Donut", soup.find("p",{"title":"Red Bean Donut"}).parent.parent.parent.find('div',{'class':'item__price-badges-order-again'}).text.replace('\n','').replace('\t','').replace(' ','')])
 loadItIn([date, "Tokyo Premium", "Beef Curry", soup.find("p",{"title":"Beef Curry"}).parent.parent.parent.find('div',{'class':'item__price-badges-order-again'}).text.replace('\n','').replace('\t','').replace(' ','')])
+
+# Soops / eggs
+
+url = "https://www.kingsoopers.com/p/kroger-cage-free-extra-large-grade-aa-white-eggs/0001111009039?fulfillment=PICKUP&searchType=default_search"
+browser.get(url)
+time.sleep(timer)
+soup = BeautifulSoup(browser.page_source, 'html.parser')
+loadItIn([date, "King Soopers", "12 Extra Large AA Eggs", soup.find("data",{"typeof":"Price"}).text])
+
+# Soops / avocado
+
+url = "https://www.kingsoopers.com/p/large-avocado/0000000004225?fulfillment=PICKUP&searchType=suggestions"
+browser.get(url)
+time.sleep(timer)
+soup = BeautifulSoup(browser.page_source, 'html.parser')
+loadItIn([date, "King Soopers", "Large Avocados", soup.find("data",{"typeof":"Price"}).text])
+
+# Soops / peaches
+
+url = "https://www.kingsoopers.com/p/fresh-california-yellow-peach-each/0000000004038?fulfillment=PICKUP&searchType=suggestions"
+browser.get(url)
+time.sleep(timer)
+soup = BeautifulSoup(browser.page_source, 'html.parser')
+loadItIn([date, "King Soopers", "Yellow California Peaches", soup.find("span",{"id":"ProductDetails-sellBy-weight"}).text])
+
+# Zorba's
+
+url = "https://order.toasttab.com/online/chef-zorbas-restaurant"
+browser.get(url)
+time.sleep(timer)
+soup = BeautifulSoup(browser.page_source, 'html.parser')
+
+loadItIn([date, "Zorba's", "Just Eggs", soup.find(string="Just Eggs").parent.parent.parent.parent.parent.find('span',{'class':'price'}).text])
+loadItIn([date, "Zorba's", "Steak & Eggs", soup.find(string="Steak & Eggs").parent.parent.parent.parent.parent.find('span',{'class':'price'}).text])
+loadItIn([date, "Zorba's", "2 Eggs & Gyro", soup.find(string="2 Eggs & Gyro").parent.parent.parent.parent.parent.find('span',{'class':'price'}).text])
+time.sleep(quicktimer)
+
+# Good Times
+
+url = "https://www.grubhub.com/restaurant/good-times-burgers--frozen-custard-102-808-e-colfax-ave-denver/2061835"
+browser.get(url)
+time.sleep(timer)
+
+soup = BeautifulSoup(browser.page_source, 'html.parser')
+loadItIn([date, "Good Times", "Deluxe Cheesburger", soup.find(string="Deluxe Cheeseburger").parent.parent.parent.parent.parent.find('span',{'itemprop':'price'}).text])
+loadItIn([date, "Good Times", "Guacamole Bacon Burger", soup.find(string="Guacamole Bacon Burger").parent.parent.parent.parent.parent.find('span',{'itemprop':'price'}).text])
+
+browser.find_element('xpath','/html/body/ghs-site-container/span/div/div[3]/div[1]/span/div/ghs-router-outlet/span/ghs-restaurant-provider/div/div[1]/div/main/div[4]/div/div[1]/div[1]/div/span/ul/li[4]/span').click()
+time.sleep(quicktimer)
+loadItIn([date, "Good Times", "Crispy Chicken Sandwich", soup.find(string="Crispy Chicken Sandwich").parent.parent.parent.parent.parent.find('span',{'itemprop':'price'}).text])
+time.sleep(quicktimer)
