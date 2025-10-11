@@ -86,10 +86,10 @@ numbers = browser.find_elements(By.CLASS_NAME, "wait-num")
 	# wait times and not precheck. Those values are string ranges, like "0-4", so we'll split them into
 	# single numbers and assign each min and max to their own variables.
 
-eastMin = numbers[0].text.split('-')[0]
-eastMax = numbers[0].text.split('-')[1]
-westMin = numbers[3].text.split('-')[0]
-westMax = numbers[3].text.split('-')[1]
+eastMin = int(numbers[0].text.split('-')[0])
+eastMax = int(numbers[0].text.split('-')[1])
+westMin = int(numbers[3].text.split('-')[0])
+westMax = int(numbers[3].text.split('-')[1])
 time.sleep(timer)
 
 # Finally, toss the numbers into our sheet and, if necessary, ping Botlandia.
@@ -97,7 +97,7 @@ time.sleep(timer)
 loadItIn([date,currentTime,eastMin,eastMax,westMin,westMax])
 time.sleep(timer)
 
-if int(westMax) > 30 or int(eastMax) > 30:
+if westMax > 30 or eastMax > 30:
 	postThis = '{"text":"<!here> <https://docs.google.com/spreadsheets/d/' + TSAKEY + '/edit?usp=sharing|TSA wait times> are longer than 30 minutes!\nEast Security times: ' + eastMin + '-' + eastMax + '\nWest Security times: ' + westMin + '-' + westMax + '"}'
 	response = requests.post(SLACKURL, data=postThis, headers={'Content-type': 'application/json'})
 
