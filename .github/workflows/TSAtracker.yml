@@ -1,6 +1,6 @@
 name: Scrape TSA Wait Times
 env:
-  PRICEKEY: ${{ secrets.TSAKEY }}
+  TSAKEY: ${{ secrets.TSAKEY }}
   PRIVATEKEY: ${{ secrets.PRIVATEKEY }}
   PRIVATEIDKEY: ${{ secrets.PRIVATEIDKEY }}
 on:
