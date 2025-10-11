@@ -15,6 +15,8 @@ import re
 
 timer = 3
 
+os.environ["DISPLAY"] = ":99"
+
 TSAKEY = os.environ['TSAKEY']
 PRIVATEKEY = os.environ['PRIVATEKEY']
 PRIVATEIDKEY = os.environ['PRIVATEIDKEY']
@@ -57,7 +59,7 @@ def loadItIn(data):
 
 date = datetime.now()
 #date = date - timedelta(days=1)
-time = str(date.hour).zfill(2) + ":" + str(date.minute).zfill(2)
+currentTime = str(date.hour).zfill(2) + ":" + str(date.minute).zfill(2)
 date = str(date.month).zfill(2) + '/' + str(date.day).zfill(2) + '/' + str(date.year)
 
 # Grab the page
@@ -73,4 +75,4 @@ westMin = numbers[3].text.split('-')[0]
 westMax = numbers[3].text.split('-')[1]
 time.sleep(timer)
 
-loadItIn([date, eastMin,eastMax,westMin,westMax])
+loadItIn([date,currentTime,eastMin,eastMax,westMin,westMax])
