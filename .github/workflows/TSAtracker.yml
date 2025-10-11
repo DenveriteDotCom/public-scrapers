@@ -3,6 +3,7 @@ env:
   TSAKEY: ${{ secrets.TSAKEY }}
   PRIVATEKEY: ${{ secrets.PRIVATEKEY }}
   PRIVATEIDKEY: ${{ secrets.PRIVATEIDKEY }}
+  SLACKURL: ${{ secrets.slackURL }}
 on:
   workflow_dispatch:
 jobs:
