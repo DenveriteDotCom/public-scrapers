@@ -80,5 +80,5 @@ loadItIn([date,currentTime,eastMin,eastMax,westMin,westMax])
 time.sleep(timer)
 
 if (int(westMax) < 5 | int(eastMax) < 5):
-    postThis = '{"text":"<!here> TSA wait times are longer than 30 minutes!\nEast Security times: ' + eastMin + '-' + eastMax + '\nWest Security times:' + westMin + '-' + westMax + '"}'
+	postThis = '{"text":"<!here> TSA wait times are longer than 30 minutes!\nEast Security times: ' + eastMin + '-' + eastMax + '\nWest Security times:' + westMin + '-' + westMax + '"}'
 	response = requests.post(SLACKURL, data=postThis, headers={'Content-type': 'application/json'})
