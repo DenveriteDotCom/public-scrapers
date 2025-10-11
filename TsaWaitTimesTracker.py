@@ -23,6 +23,9 @@ TSAKEY = os.environ['TSAKEY']
 PRIVATEKEY = os.environ['PRIVATEKEY']
 PRIVATEIDKEY = os.environ['PRIVATEIDKEY']
 SLACKURL = os.environ['SLACKURL']
+	
+	# These ^ are github specific secret variables, where the platform lets us hide sensitive info.
+	# They're configured in a separate YML file that we also use to trigger the function remotely.
 
 # Next, we set up Selenium to open the page virtually.
 
