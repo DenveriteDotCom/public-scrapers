@@ -1,4 +1,4 @@
-name: Scrape Prices
+name: Scrape TSA Wait Times
 env:
   PRICEKEY: ${{ secrets.TSAKEY }}
   PRIVATEKEY: ${{ secrets.PRIVATEKEY }}
