@@ -15,4 +15,4 @@ jobs:
         run: |
           python -m pip install gspread webdriver-manager selenium PyVirtualDisplay
       - name: Run the script
-        run: python TsaWaitTimesTracker.py.py
+        run: python TsaWaitTimesTracker.py
