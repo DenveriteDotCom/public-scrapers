@@ -1,3 +1,5 @@
+# Let's start with our variables and libraries.
+
 import gspread
 
 from selenium import webdriver
@@ -22,7 +24,7 @@ PRIVATEKEY = os.environ['PRIVATEKEY']
 PRIVATEIDKEY = os.environ['PRIVATEIDKEY']
 SLACKURL = os.environ['SLACKURL']
 
-# Here's the Selenium setup.
+# Next, we set up Selenium to open the page virtually.
 
 user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36'
 chrome_options = Options()
@@ -34,7 +36,7 @@ for option in options:
     chrome_options.add_argument(option)
 browser = webdriver.Chrome(options=chrome_options)
 
-# And the Gspread setup, to append data to a Google sheet.
+# Next is the Gspread setup, to append data to a Google sheet.
 
 creds = {
     "type": "service_account",
@@ -56,14 +58,14 @@ def loadItIn(data):
     sheetdata.append_row(data)
 
 
-# What day is today? What time?
+# What day is today? What time? And we need to subtract 6 hours since this runs in GMT.
 
 date = datetime.now()
 date = date - timedelta(hours=6)
 currentTime = str(date.hour).zfill(2) + ":" + str(date.minute).zfill(2)
 date = str(date.month).zfill(2) + '/' + str(date.day).zfill(2) + '/' + str(date.year)
 
-# Grab the page
+# Grab the page and find our numbers.
 
 url = 'https://www.flydenver.com/security/'
 browser.get(url)
@@ -76,10 +78,11 @@ westMin = numbers[3].text.split('-')[0]
 westMax = numbers[3].text.split('-')[1]
 time.sleep(timer)
 
+# Finally, toss the numbers into our sheet and, if necessary, ping Botlandia.
+
 loadItIn([date,currentTime,eastMin,eastMax,westMin,westMax])
 time.sleep(timer)
 
-if int(westMax) < 30 or int(eastMax) < 30:
-	print("HIII")
-	postThis = '{"text":"<!here> TSA wait times are longer than 30 minutes!\nEast Security times: ' + eastMin + '-' + eastMax + '\nWest Security times:' + westMin + '-' + westMax + '"}'
+if int(westMax) > 30 or int(eastMax) > 30:
+	postThis = '{"text":"<!here> <https://docs.google.com/spreadsheets/d/' + TSAKEY + '/edit?usp=sharing|TSA wait times> are longer than 30 minutes!\nEast Security times: ' + eastMin + '-' + eastMax + '\nWest Security times:' + westMin + '-' + westMax + '"}'
 	response = requests.post(SLACKURL, data=postThis, headers={'Content-type': 'application/json'})
