@@ -83,8 +83,8 @@ numbers = browser.find_elements(By.CLASS_NAME, "wait-num")
 
 	# This ^ finds six fields on the page called "wait num" and combines them into an array.
 	# We'll use indexing [0] and [3] to get the first and fourth values in that array, which are regular
-	# wait times and not precheck. Those values are string ranges, like "0-4", so we'll split them into
-	# single numbers and assign each min and max to their own variables.
+	# wait times and not TSA Precheck. Those values are string ranges, like "0-4", so we'll split them
+	# into single numbers, convert them to integers "int()" and assign each min and max to their own variables.
 
 eastMin = int(numbers[0].text.split('-')[0])
 eastMax = int(numbers[0].text.split('-')[1])
