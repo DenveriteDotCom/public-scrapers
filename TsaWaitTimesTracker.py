@@ -20,6 +20,7 @@ os.environ["DISPLAY"] = ":99"
 TSAKEY = os.environ['TSAKEY']
 PRIVATEKEY = os.environ['PRIVATEKEY']
 PRIVATEIDKEY = os.environ['PRIVATEIDKEY']
+SLACKURL = os.environ['SLACKURL']
 
 # Here's the Selenium setup.
 
@@ -58,7 +59,7 @@ def loadItIn(data):
 # What day is today? What time?
 
 date = datetime.now()
-#date = date - timedelta(days=1)
+date = date - timedelta(hours=6)
 currentTime = str(date.hour).zfill(2) + ":" + str(date.minute).zfill(2)
 date = str(date.month).zfill(2) + '/' + str(date.day).zfill(2) + '/' + str(date.year)
 
@@ -76,3 +77,8 @@ westMax = numbers[3].text.split('-')[1]
 time.sleep(timer)
 
 loadItIn([date,currentTime,eastMin,eastMax,westMin,westMax])
+time.sleep(timer)
+
+if (int(westMax) < 5 | int(eastMax) < 5):
+    postThis = '{"text":"<!here> TSA wait times are longer than 30 minutes!\nEast Security times: ' + eastMin + '-' + eastMax + '\nWest Security times:' + westMin + '-' + westMax + '"}'
+	response = requests.post(SLACKURL, data=postThis, headers={'Content-type': 'application/json'})
