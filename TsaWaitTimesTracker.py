@@ -56,6 +56,10 @@ def loadItIn(data):
     gsheet = gc.open_by_key('19PEMS3Ajh4rPdakjcDISgbEW3d8mA293birFNrwe2Hc')
     sheetdata = gsheet.get_worksheet(0)
     sheetdata.append_row(data)
+	
+	# This ^ is our funcction to append an array of values into individual cells
+	# in google sheets, per Gspread's API. We'll call it later. It requires additional
+	# setup in Google Docs, creating a bot agent to act on our behalf.
 
 
 # What day is today? What time? And we need to subtract 6 hours since this runs in GMT.
@@ -70,8 +74,15 @@ date = str(date.month).zfill(2) + '/' + str(date.day).zfill(2) + '/' + str(date.
 url = 'https://www.flydenver.com/security/'
 browser.get(url)
 time.sleep(timer)
+	# "sleep" just tells the system to wait a sec, in this case timer = 3 seconds, to let the virtual browser catch up.
 
 numbers = browser.find_elements(By.CLASS_NAME, "wait-num")
+
+	# This ^ finds six fields on the page called "wait num" and combines them into an array.
+	# We'll use indexing [0] and [3] to get the first and fourth values in that array, which are regular
+	# wait times and not precheck. Those values are string ranges, like "0-4", so we'll split them into
+	# single numbers and assign each min and max to their own variables.
+
 eastMin = numbers[0].text.split('-')[0]
 eastMax = numbers[0].text.split('-')[1]
 westMin = numbers[3].text.split('-')[0]
@@ -86,3 +97,6 @@ time.sleep(timer)
 if int(westMax) > 30 or int(eastMax) > 30:
 	postThis = '{"text":"<!here> <https://docs.google.com/spreadsheets/d/' + TSAKEY + '/edit?usp=sharing|TSA wait times> are longer than 30 minutes!\nEast Security times: ' + eastMin + '-' + eastMax + '\nWest Security times:' + westMin + '-' + westMax + '"}'
 	response = requests.post(SLACKURL, data=postThis, headers={'Content-type': 'application/json'})
+
+	# This stuff here ^ is how Slack accepts new messages via Webhook.
+	# Slack has its own protocols for how this should be formatted.
