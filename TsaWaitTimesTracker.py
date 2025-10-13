@@ -98,7 +98,7 @@ loadItIn([date,currentTime,eastMin,eastMax,westMin,westMax])
 time.sleep(timer)
 
 if westMax > 30 or eastMax > 30:
-	postThis = '{"text":"<!here> <https://docs.google.com/spreadsheets/d/' + TSAKEY + '/edit?usp=sharing|TSA wait times> are longer than 30 minutes!\nEast Security times: ' + eastMin + '-' + eastMax + '\nWest Security times: ' + westMin + '-' + westMax + '"}'
+	postThis = '{"text":"<!here> TSA wait times are longer than 30 minutes!\nEast Security times: ' + eastMin + '-' + eastMax + '\nWest Security times: ' + westMin + '-' + westMax + '"}'
 	response = requests.post(SLACKURL, data=postThis, headers={'Content-type': 'application/json'})
 
 	# This stuff here ^ is how Slack accepts new messages via Webhook.
