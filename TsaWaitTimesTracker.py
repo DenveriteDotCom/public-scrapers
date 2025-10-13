@@ -86,10 +86,14 @@ numbers = browser.find_elements(By.CLASS_NAME, "wait-num")
 	# wait times and not TSA Precheck. Those values are string ranges, like "0-4", so we'll split them
 	# into single numbers, convert them to integers "int()" and assign each min and max to their own variables.
 
-eastMin = int(numbers[0].text.split('-')[0])
-eastMax = int(numbers[0].text.split('-')[1])
-westMin = int(numbers[3].text.split('-')[0])
-westMax = int(numbers[3].text.split('-')[1])
+#eastMin = int(numbers[0].text.split('-')[0])
+#eastMax = int(numbers[0].text.split('-')[1])
+#westMin = int(numbers[3].text.split('-')[0])
+#westMax = int(numbers[3].text.split('-')[1])
+eastMin = 30
+eastMax = 35
+westMin = 30
+westMax = 40
 time.sleep(timer)
 
 # Finally, toss the numbers into our sheet and, if necessary, ping Botlandia.
@@ -98,8 +102,9 @@ loadItIn([date,currentTime,eastMin,eastMax,westMin,westMax])
 time.sleep(timer)
 
 if westMax > 30 or eastMax > 30:
-	postThis = '{"text":"<!here> <https://docs.google.com/spreadsheets/d/' + TSAKEY + '/edit?usp=sharing|TSA wait times> are longer than 30 minutes!\nEast Security times: ' + eastMin + '-' + eastMax + '\nWest Security times: ' + westMin + '-' + westMax + '"}'
-	response = requests.post(SLACKURL, data=postThis, headers={'Content-type': 'application/json'})
+	print('yooo')
+	#postThis = '{"text":"<!here> <https://docs.google.com/spreadsheets/d/' + TSAKEY + '/edit?usp=sharing|TSA wait times> are longer than 30 minutes!\nEast Security times: ' + eastMin + '-' + eastMax + '\nWest Security times: ' + westMin + '-' + westMax + '"}'
+	#response = requests.post(SLACKURL, data=postThis, headers={'Content-type': 'application/json'})
 
 	# This stuff here ^ is how Slack accepts new messages via Webhook.
 	# Slack has its own protocols for how this should be formatted.
